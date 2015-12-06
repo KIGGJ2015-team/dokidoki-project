@@ -6,7 +6,7 @@
 // 作成者：
 //
 // <概要>
-//
+// ゴールの処理です
 //
 // ----- ----- ----- ----- -----
 
@@ -21,8 +21,12 @@ public class Goal : MonoBehaviour
 
 	//[Header("タイトル")]
     
-	//[SerializeField, Tooltip("説明文")]
-	
+	[SerializeField, Tooltip("プレイヤーのタグ")]
+	private string playerTag = "Player";
+
+    [SerializeField, Tooltip("情報を表示するテキスト")]
+    private GameObject informationText;
+
     #endregion
 
 
@@ -53,15 +57,25 @@ public class Goal : MonoBehaviour
         
     }
 
-    void GoalOpen()
+    void OnTriggerEnter(Collider other)
     {
-        //ゴール解放
+        if(other.gameObject.tag == playerTag)
+        {
+            if(other.gameObject.GetComponent<CheckPointManager>().IsGetAllKey)
+            {
+                //ゴール
+                PlayerGoal();
+            }
+        }
     }
 
-    void CheckKey()
+    void PlayerGoal()
     {
-
         //ゴールの処理
+#warning 後で実装
+        Debug.Log("Goal!!!");
+
+        informationText.GetComponent<GameInformation>().ShowInformation("ゴール！");
     }
 	#endregion
 }

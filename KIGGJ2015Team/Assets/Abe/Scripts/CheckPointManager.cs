@@ -6,7 +6,8 @@
 // 作成者：
 //
 // <概要>
-//
+// どこのチェックポイントを
+// 通ってきたのかを管理します
 //
 // ----- ----- ----- ----- -----
 
@@ -27,20 +28,33 @@ public class CheckPointManager : MonoBehaviour
     [SerializeField, Tooltip("チェックポイントの個数"), Range(1, 100)]
     private int checkPointNumber = 1;
 
+    [SerializeField, Tooltip("情報を表示するテキスト")]
+    private GameObject informationText;
 
     #endregion
 
 
     #region プロパティ
 
+    public List<GameObject> KeyItemsData
+    {
+        get { return keyItemsData; }
+    }
 
+    public bool IsGetAllKey
+    {
+        get
+        {
+            return keyItemsData.Count >= checkPointNumber;
+        }
+    }
 
     #endregion
 
 
     #region メソッド
 
-	// 初期化処理
+    // 初期化処理
     void Awake()
     {
 
@@ -81,14 +95,16 @@ public class CheckPointManager : MonoBehaviour
 
     void GoalOpenCheck()
     {
-        if(keyItemsData.Count >= checkPointNumber)
+        if(IsGetAllKey)
         {
             //ゴールの処理
             Debug.Log("Goal Open");
+            informationText.GetComponent<GameInformation>().ShowInformation("ゴールオープン！");
 #warning 後で実装
         }
     }
 
+    //ランダムでキーを落とす
     void LostKey()
     {
         int count = keyItemsData.Count;
@@ -96,6 +112,9 @@ public class CheckPointManager : MonoBehaviour
         int lostNumber = Random.Range(0, count-1);
 
         keyItemsData.RemoveAt(lostNumber);
+
+        //表示関係にどのキーが落ちたかを通知する
+#warning 後で実装
     }
 	#endregion
 }
