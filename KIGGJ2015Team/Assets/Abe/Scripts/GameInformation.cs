@@ -73,6 +73,7 @@ public class GameInformation : MonoBehaviour
 
     public void ShowInformation(string message)
     {
+        StopAllCoroutines();
         InformationText.text  = message;
         StartCoroutine(Show());
         //Show -> Wait -> Hideの順に処理が変わっていく
