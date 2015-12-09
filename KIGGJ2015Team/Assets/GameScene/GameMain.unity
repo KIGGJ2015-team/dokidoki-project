@@ -631,9 +631,9 @@ Prefab:
       propertyPath: informationText
       value: 
       objectReference: {fileID: 76646723}
-    - target: {fileID: 11467042, guid: 67ae328e07a25aa41b1d2ac9ec4aa674, type: 2}
-      propertyPath: speed
-      value: 1000
+    - target: {fileID: 438854, guid: 67ae328e07a25aa41b1d2ac9ec4aa674, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 1.20000005
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 67ae328e07a25aa41b1d2ac9ec4aa674, type: 2}
