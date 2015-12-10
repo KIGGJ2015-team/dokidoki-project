@@ -100,7 +100,6 @@ public class CheckPointManager : MonoBehaviour
             //ゴールの処理
             Debug.Log("Goal Open");
             informationText.GetComponent<GameInformation>().ShowInformation("ゴールオープン！");
-#warning 後で実装
         }
     }
 
