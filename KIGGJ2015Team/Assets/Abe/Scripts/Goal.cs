@@ -72,7 +72,6 @@ public class Goal : MonoBehaviour
     void PlayerGoal()
     {
         //ゴールの処理
-#warning 後で実装
         Debug.Log("Goal!!!");
 
         informationText.GetComponent<GameInformation>().ShowInformation("ゴール！");
