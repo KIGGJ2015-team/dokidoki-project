@@ -8,6 +8,7 @@ public class NewBehaviourScript : MonoBehaviour {
 	    Debug.Assert(false, "Start");
         //a
         //aa
+        Debug.Log("aaaa");
 	}
 	
 	// Update is called once per frame
@@ -15,5 +16,6 @@ public class NewBehaviourScript : MonoBehaviour {
 	    Debug.Assert(false, "Update");
         //a
         //aa
+        Debug.Log("aaaa");
 	}
 }
