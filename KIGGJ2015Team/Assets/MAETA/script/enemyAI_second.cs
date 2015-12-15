@@ -2,31 +2,43 @@
 using System.Collections;
 
 public class enemyAI_second : MonoBehaviour {
-
+    #region 変数
     public float speed ;
     private float rotationSmooth = 1f;
     private Vector3 targetPosition;
     private float changeTargetSqrDistance = 40f;
     bool PlayerFind = false;
-    bool Check0Find = true;
-    bool Check1Find = true;
-    bool Check2Find = true;
+    bool Check0Find = false;
+    bool Check1Find = false;
+    bool Check2Find = false;
+    [SerializeField]
+    bool urochoro = true;
+    [SerializeField]
     private Transform player;
+    [SerializeField]
     private Transform Check0;
+    [SerializeField]
     private Transform Check1;
+    [SerializeField]
     private Transform Check2;
-    float Playerrange = 10000f;
-    float Checkrange = 10000f;
+    [SerializeField]
+    float Playerrange = 10f;
+    [SerializeField]
+    float Checkrange = 10f;
     //CharacterController _controller;
    // Transform _transform;
     Vector3 dist0;
     Vector3 dist1;
     Vector3 dist2;
     Vector3 dist3;
-    public float rotMax;
+  
+  
+    #endregion
 
+    #region インスタンス
     private void Start()
     {
+        
         targetPosition = GetRandomPositionOnLevel();
         player = GameObject.FindWithTag("Player").transform;
         Check0 = GameObject.FindWithTag("check").transform;
@@ -35,61 +47,75 @@ public class enemyAI_second : MonoBehaviour {
        // _controller = GetComponent<CharacterController>();
         //_transform = GetComponent<Transform>();
     }
-
+    #endregion
     private void Update()
     {
-        // 目標地点との距離が小さければ、次のランダムな目標地点を設定する
-        float sqrDistanceToTarget = Vector3.SqrMagnitude(transform.position - targetPosition);
-        if (sqrDistanceToTarget < changeTargetSqrDistance)
+        if (Vector3.Distance(transform.position, player.transform.position) < Playerrange)
         {
-            targetPosition = GetRandomPositionOnLevel();
+            PlayerFind = true;
         }
 
-        // 目標地点の方向を向く
-        Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSmooth);
-
-        // 前方に進む
-        transform.Translate(Vector3.forward * speed * Time.deltaTime);
-
-        if (Check0Find)
+            if (urochoro)
         {
-            CheckPOINT0();
+                Debug.Log("urochoro");
+                // 目標地点との距離が小さければ、次のランダムな目標地点を設定する
+                float sqrDistanceToTarget = Vector3.SqrMagnitude(transform.position - targetPosition);
+                if (sqrDistanceToTarget < changeTargetSqrDistance)
+                {
+                    targetPosition = GetRandomPositionOnLevel();
+                }        
+                           // 目標地点の方向を向く
+                Quaternion targetRotation = Quaternion.LookRotation(targetPosition - transform.position);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSmooth);
+
+                // 前方に進む
+                transform.Translate(Vector3.forward * speed * Time.deltaTime);
+             
+            
         }
         else
-         if (!Check0Find)
+        if (!urochoro)
         {
-            return;
-        }
+            Debug.Log("urochoroPPPPP");
+            if (Check0Find)
+            {
+                CheckPOINT0();
+            }
+            else
+             if (!Check0Find)
+            {
+                return;
+            }
 
-        if (Check1Find)
-        {
-            CheckPOINT1();
-        }
-        else
-        if (!Check1Find)
-        {
-            return;
-        }
+            if (Check1Find)
+            {
+                CheckPOINT1();
+            }
+            else
+            if (!Check1Find)
+            {
+                return;
+            }
 
-        if (Check2Find)
-        {
-            CheckPOINT2();
-        }
-        else
-        if (!Check2Find)
-        {
-            return;
-        }
+            if (Check2Find)
+            {
+                CheckPOINT2();
+            }
+            else
+            if (!Check2Find)
+            {
+                return;
+            }
 
-        if (PlayerFind)
-        {
-            PlayerwoOU();
-        }
-        else
-        if (!PlayerFind)
-        {
-            return;
+            if (PlayerFind)
+            {
+                PlayerwoOU();
+            }
+            else
+            if (!PlayerFind)
+            {
+                return;
+            }
         }
     }
 
@@ -102,6 +128,7 @@ public class enemyAI_second : MonoBehaviour {
         dist0 = player.transform.position - transform.position;
         if (Vector3.Distance(transform.position, player.transform.position) < Playerrange)
         {
+            urochoro = false;
             Quaternion targetRotation = Quaternion.LookRotation(player.position - transform.position);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSmooth);
 
@@ -121,7 +148,7 @@ public class enemyAI_second : MonoBehaviour {
         dist1 = Check0.transform.position - transform.position;
         if (Vector3.Distance(transform.position, Check0.transform.position) < Checkrange)
         {
-
+            urochoro = false;
             Quaternion targetRotation = Quaternion.LookRotation(Check0.position - transform.position);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSmooth);
 
@@ -131,7 +158,7 @@ public class enemyAI_second : MonoBehaviour {
             if (Vector3.Distance(transform.position, Check0.transform.position) < Playerrange)
             {
                 Check0Find = false;
-                PlayerwoOU();
+                
             }
         }
 
@@ -143,7 +170,7 @@ public class enemyAI_second : MonoBehaviour {
         dist2 = Check1.transform.position - transform.position;
         if (Vector3.Distance(transform.position, Check1.transform.position) < Checkrange)
         {
-
+            urochoro = false;
             Quaternion targetRotation = Quaternion.LookRotation(Check1.position - transform.position);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSmooth);
 
@@ -164,6 +191,7 @@ public class enemyAI_second : MonoBehaviour {
         dist3 = Check2.transform.position - transform.position;
         if (Vector3.Distance(transform.position, Check2.transform.position) < Checkrange)
         {
+            urochoro = false;
             Quaternion targetRotation = Quaternion.LookRotation(Check2.position - transform.position);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSmooth);
 
@@ -190,6 +218,7 @@ public class enemyAI_second : MonoBehaviour {
 
 
     void OnTriggerEnter(Collider coll)
+    //void OnControllerColliderHit(ControllerColliderHit coll)
     {
         if (coll.gameObject.tag == "check")
         {
@@ -211,4 +240,5 @@ public class enemyAI_second : MonoBehaviour {
 
     }
 
+   
 }
