@@ -10,7 +10,7 @@ public class Player_Shot : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetAxisRaw("Fire1") == 1) 
+        if (Input.GetButtonDown("Fire1")) 
         {
             Shoot();
         }
