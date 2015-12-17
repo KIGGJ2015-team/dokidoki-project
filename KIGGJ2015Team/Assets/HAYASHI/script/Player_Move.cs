@@ -17,14 +17,62 @@ public class Player_Move : MonoBehaviour {
     public Yaxis yaxis;
     [SerializeField, Tooltip("ブースト速度")]
     public float boostSpeed;
+    [SerializeField, Tooltip("ロール速度")]
+    public float rollSpeed;
 
+    float VRotateSpeed;     //Ｙ軸のスピード
+    float time = 0;         //時間計測
+    Vector3 vec;            //向き
+    GameObject fighter;
 
-    float VRotateSpeed;
-    float time = 0;
-
+    Player_Status playerstatus;
 
     // Use this for initialization
     void Start () {
+        fighter = GameObject.Find("fighter");
+        vec = transform.eulerAngles;
+        
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+        Yreverse();
+        transform.Rotate(transform.up, RotateSpeed * Input.GetAxisRaw("Horizontal"),Space.World);
+        transform.Rotate(Vector3.right, VRotateSpeed * Input.GetAxisRaw("Vertical"),Space.Self);
+        if (Input.GetAxisRaw("Boost") < 1)
+        {
+            transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
+        }
+        else transform.Translate(Vector3.forward * boostSpeed * Time.deltaTime, Space.Self);
+        rolling();
+        keepStability();
+	}
+
+    void rolling()
+    {
+        if (Input.GetAxisRaw("Horizontal")>0)
+        {
+            if (Input.GetButton("Boost"))
+            {
+                transform.Translate(Vector3.right * rollSpeed * Time.deltaTime, Space.Self);
+            }
+        }
+        else if (Input.GetAxisRaw("Horizontal")<0)
+        {
+            if (Input.GetButton("Boost")) transform.Translate(-Vector3.right * rollSpeed * Time.deltaTime, Space.Self);
+        }
+
+    }
+
+    void keepStability()
+    {
+
+        
+    }
+
+    void Yreverse()
+    {
         switch (yaxis)
         {
             case Yaxis.normal:
@@ -34,28 +82,6 @@ public class Player_Move : MonoBehaviour {
                 VRotateSpeed = RotateSpeed;
                 break;
         }
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        transform.Rotate(transform.up, RotateSpeed * Input.GetAxisRaw("Horizontal"),Space.World);
-        transform.Rotate(Vector3.right, VRotateSpeed * Input.GetAxisRaw("Vertical"),Space.Self);
-        if (Input.GetAxisRaw("Horizontal") < 0) roll(-1);
-        else if (Input.GetAxisRaw("Horizontal") > 0) roll(1);
-
-        if (Input.GetAxisRaw("Boost") < 1)
-        {
-            transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
-        }
-        else transform.Translate(Vector3.forward * boostSpeed * Time.deltaTime, Space.Self);
-	}
-
-    void roll(int number)
-    {
-//        transform.Rotate(Vector3.Slerp());
-        time += Time.deltaTime;
-
 
     }
 }
