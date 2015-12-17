@@ -41,6 +41,11 @@ public class CheckPointManager : MonoBehaviour
         get { return keyItemsData; }
     }
 
+    public int CheckPointNumber
+    {
+        get { return checkPointNumber; }
+    }
+
     public bool IsGetAllKey
     {
         get
@@ -57,7 +62,7 @@ public class CheckPointManager : MonoBehaviour
     // 初期化処理
     void Awake()
     {
-
+        
     }
 
     // 更新前処理
@@ -69,7 +74,7 @@ public class CheckPointManager : MonoBehaviour
     // 更新処理
     void Update()
     {
-
+        
     }
 
     void OnTriggerEnter(Collider other)
