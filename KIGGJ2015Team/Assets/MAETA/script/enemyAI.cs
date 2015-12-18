@@ -28,7 +28,7 @@ public class enemyAI : MonoBehaviour
     private Transform Check2;
     [SerializeField]
     float Playerrange = 10f;
-  //[SerializeField]
+    //[SerializeField]
     //float Checkrange = 10f;
     //CharacterController _controller;
     // Transform _transform;
@@ -37,8 +37,8 @@ public class enemyAI : MonoBehaviour
     Vector3 dist2;
     Vector3 dist3;
     timer timer;
-
     #endregion
+
 
     #region インスタンス
     private void Start()
@@ -53,7 +53,7 @@ public class enemyAI : MonoBehaviour
         dist2 = Check1.transform.position - transform.position;
         dist3 = Check2.transform.position - transform.position;
 
-        
+
     }
     #endregion
     private void Update()
@@ -80,14 +80,13 @@ public class enemyAI : MonoBehaviour
 
                     // 前方に進む
                     transform.Translate(Vector3.forward * speed * Time.deltaTime);
-             
                 }
             }
 
             if (dist2Check1 < dist3Check2)
+            {
+                if (Check1Find)
                 {
-                    if (Check1Find)
-                    {
                     Debug.Log("dist2");
                     targetPosition = Check1.transform.position;
 
@@ -98,7 +97,7 @@ public class enemyAI : MonoBehaviour
                     transform.Translate(Vector3.forward * speed * Time.deltaTime);
                 }
             }
-           
+
             if (dist3Check2 < dist1Check0)
             {
                 if (Check2Find)
@@ -218,7 +217,7 @@ public class enemyAI : MonoBehaviour
     void PlayerwoOU()
     {
         Debug.Log("player");
-       // dist0 = player.transform.position - transform.position;
+        // dist0 = player.transform.position - transform.position;
         if (Vector3.Distance(transform.position, player.transform.position) < Playerrange)
         {
             urochoro = false;
@@ -235,7 +234,7 @@ public class enemyAI : MonoBehaviour
         }
     }
     #endregion
-    
+
     #region チェックポイント
     /* void CheckPOINT0()
      {
@@ -302,7 +301,7 @@ public class enemyAI : MonoBehaviour
 
      }*/
     #endregion
-    
+
 
     public Vector3 GetRandomPositionOnLevel()
     {
@@ -342,80 +341,78 @@ public class enemyAI : MonoBehaviour
             }*/
             }
         }
-            if (coll.gameObject.tag == "check1")
+        if (coll.gameObject.tag == "check1")
+        {
+            if (Check1Find)
             {
-                if (Check1Find)
-                {
-                    Debug.Log("check1");
-                   // urochoro = false;
+                Debug.Log("check1");
+                // urochoro = false;
                 Check1Find = false;
-                    /* Quaternion targetRotation = Quaternion.LookRotation(Check1.position - transform.position);
-                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSmooth);
+                /* Quaternion targetRotation = Quaternion.LookRotation(Check1.position - transform.position);
+                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSmooth);
 
-                     // 前方に進む
-                     transform.Translate(Vector3.forward * speed * Time.deltaTime);
+                 // 前方に進む
+                 transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
-                     //if (Vector3.Distance(transform.position, Check1.transform.position) < Playerrange)
-                     //{
-                     //  PlayerFind = true;
+                 //if (Vector3.Distance(transform.position, Check1.transform.position) < Playerrange)
+                 //{
+                 //  PlayerFind = true;
 
-                     if (Vector3.Distance(transform.position, Check1.transform.position) < 1)
-                     {
-                         Check1Find = false;
-                         urochoro = true;
-                         Debug.Log("Check1Find = false");
-                     }
-                 }  */
-                }
+                 if (Vector3.Distance(transform.position, Check1.transform.position) < 1)
+                 {
+                     Check1Find = false;
+                     urochoro = true;
+                     Debug.Log("Check1Find = false");
+                 }
+             }  */
             }
-            if (coll.gameObject.tag == "check2")
-            {
-                if (Check2Find)
-                {
-                    Debug.Log("check2");
-                   // urochoro = false;
-                Check2Find = false;
-                    /* Quaternion targetRotation = Quaternion.LookRotation(Check2.position - transform.position);
-                     transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSmooth);
-
-                     // 前方に進む
-                     transform.Translate(Vector3.forward * speed * Time.deltaTime);
-
-                     // if (Vector3.Distance(transform.position, Check2.transform.position) < Playerrange)
-                     //{
-                     //  PlayerFind = true;
-                     if (Vector3.Distance(transform.position, Check2.transform.position) < 1)
-                     {
-
-                         Check2Find = false;
-                         urochoro = true;
-                         Debug.Log("Check2Find = false");
-                     }
-                 }*/
-                }
-            }
-            if (coll.gameObject.tag == "Player")
-            {
-                Debug.Log("player");
-                PlayerFind = true;
-                /* // dist0 = player.transform.position - transform.position;
-                  if (Vector3.Distance(transform.position, player.transform.position) < Playerrange)
-                  {
-                      urochoro = false;
-                      Quaternion targetRotation = Quaternion.LookRotation(player.position - transform.position);
-                      transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSmooth);
-
-                      // 前方に進む
-                      transform.Translate(Vector3.forward * speed * Time.deltaTime);
-                  }
-                  if (Vector3.Distance(transform.position, player.transform.position) > Playerrange)
-                  {
-                      PlayerFind = false;
-                      urochoro = true;
-                  }*/
-            }
-
         }
-    }           
+        if (coll.gameObject.tag == "check2")
+        {
+            if (Check2Find)
+            {
+                Debug.Log("check2");
+                // urochoro = false;
+                Check2Find = false;
+                /* Quaternion targetRotation = Quaternion.LookRotation(Check2.position - transform.position);
+                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSmooth);
 
+                 // 前方に進む
+                 transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
+                 // if (Vector3.Distance(transform.position, Check2.transform.position) < Playerrange)
+                 //{
+                 //  PlayerFind = true;
+                 if (Vector3.Distance(transform.position, Check2.transform.position) < 1)
+                 {
+
+                     Check2Find = false;
+                     urochoro = true;
+                     Debug.Log("Check2Find = false");
+                 }
+             }*/
+            }
+        }
+        if (coll.gameObject.tag == "Player")
+        {
+            Debug.Log("player");
+            PlayerFind = true;
+            /* // dist0 = player.transform.position - transform.position;
+              if (Vector3.Distance(transform.position, player.transform.position) < Playerrange)
+              {
+                  urochoro = false;
+                  Quaternion targetRotation = Quaternion.LookRotation(player.position - transform.position);
+                  transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSmooth);
+
+                  // 前方に進む
+                  transform.Translate(Vector3.forward * speed * Time.deltaTime);
+              }
+              if (Vector3.Distance(transform.position, player.transform.position) > Playerrange)
+              {
+                  PlayerFind = false;
+                  urochoro = true;
+              }*/
+        }
+
+    }
+}
