@@ -22,7 +22,7 @@ public class Player_Move : MonoBehaviour {
 
     float VRotateSpeed;     //Ｙ軸のスピード
     float time = 0;         //時間計測
-    Vector3 vec;            //向き
+    Quaternion vec;
     GameObject fighter;
 
     Player_Status playerstatus;
@@ -30,13 +30,12 @@ public class Player_Move : MonoBehaviour {
     // Use this for initialization
     void Start () {
         fighter = GameObject.Find("fighter");
-        vec = transform.eulerAngles;
-        
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        vec = transform.rotation;
         Yreverse();
         transform.Rotate(transform.up, RotateSpeed * Input.GetAxisRaw("Horizontal"),Space.World);
         transform.Rotate(Vector3.right, VRotateSpeed * Input.GetAxisRaw("Vertical"),Space.Self);
@@ -67,6 +66,13 @@ public class Player_Move : MonoBehaviour {
 
     void keepStability()
     {
+        if (!Input.anyKey)
+        {
+            vec.z = 0;
+            vec.x = 0;
+            transform.rotation = Quaternion.Lerp(transform.rotation, vec, 0.05f);
+            Debug.Log("keep");
+        }
 
         
     }
