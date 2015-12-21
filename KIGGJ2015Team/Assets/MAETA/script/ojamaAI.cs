@@ -53,7 +53,11 @@ public class ojamaAI : MonoBehaviour {
             }else
                 if (!urochoro)
             {
+<<<<<<< HEAD
                 PlayerFind = true;
+=======
+
+>>>>>>> MAETA
             }
         }
 }
@@ -70,6 +74,7 @@ public class ojamaAI : MonoBehaviour {
     {
         if (coll.gameObject.tag == "Player")
         {
+<<<<<<< HEAD
             if (PlayerFind)
             {
                 Debug.Log("en");
@@ -80,6 +85,16 @@ public class ojamaAI : MonoBehaviour {
                 // 前方に進む
                 transform.Translate(Vector3.forward * speed * Time.deltaTime);
             }
+=======
+            Debug.Log("en");
+            PlayerFind = true;
+            urochoro = false;
+            Quaternion targetRotation = Quaternion.LookRotation(player.position - transform.position);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSmooth);
+
+                  // 前方に進む
+                  transform.Translate(Vector3.forward * speed * Time.deltaTime);
+>>>>>>> MAETA
         }
               
         }
