@@ -79,6 +79,8 @@ public class CheckPointManager : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Enter");
+
         if(other.gameObject.tag != "CheckPoint")
         {
             return;
@@ -94,6 +96,7 @@ public class CheckPointManager : MonoBehaviour
             }
         }
 
+        
         keyItemsData.Add(other.gameObject);
         GoalOpenCheck();
     }
@@ -104,7 +107,7 @@ public class CheckPointManager : MonoBehaviour
         {
             //ゴールの処理
             Debug.Log("Goal Open");
-            informationText.GetComponent<GameInformation>().ShowInformation("ゴールオープン！");
+            //informationText.GetComponent<GameInformation>().ShowInformation("ゴールオープン！");
         }
     }
 
