@@ -7,13 +7,14 @@ public class ojamaAI : MonoBehaviour {
     private float rotationSmooth = 1f;
     private Vector3 targetPosition;
     private float changeTargetSqrDistance = 40f;
+    //[SerializeField]
+   // bool PlayerFind = false;
     [SerializeField]
-    bool PlayerFind = false;
-    [SerializeField]
-    bool urochoro = true;
+    bool haikai = true;
     [SerializeField]
     private Transform player;
-    
+  
+
     timer timer;
 
 
@@ -22,7 +23,7 @@ public class ojamaAI : MonoBehaviour {
     {
         targetPosition = GetRandomPositionOnLevel();
         player = GameObject.FindWithTag("Player").transform;
-       
+    
     }
    
     private void Update()
@@ -34,9 +35,9 @@ public class ojamaAI : MonoBehaviour {
         {
 
 
-            if (urochoro)
+            if (haikai)
             {
-                Debug.Log("urochoro");
+                Debug.Log("haikai");
                 // 目標地点との距離が小さければ、次のランダムな目標地点を設定する
                 float sqrDistanceToTarget = Vector3.SqrMagnitude(transform.position - targetPosition);
                 if (sqrDistanceToTarget < changeTargetSqrDistance)
@@ -50,15 +51,8 @@ public class ojamaAI : MonoBehaviour {
                 // 前方に進む
                 transform.Translate(Vector3.forward * speed * Time.deltaTime);
 
-            }else
-                if (!urochoro)
-            {
-<<<<<<< HEAD
-                PlayerFind = true;
-=======
-
->>>>>>> MAETA
             }
+            
         }
 }
     public Vector3 GetRandomPositionOnLevel()
@@ -69,32 +63,24 @@ public class ojamaAI : MonoBehaviour {
 
 
 
-    void OnTriggerEnter(Collider coll)
+    void OnTriggerStay(Collider coll)
 
     {
         if (coll.gameObject.tag == "Player")
         {
-<<<<<<< HEAD
-            if (PlayerFind)
-            {
+            //if (PlayerFind)
+            //{
                 Debug.Log("en");
-                urochoro = false;
+                haikai = false;
+                Debug.Log("1");
                 Quaternion targetRotation = Quaternion.LookRotation(player.position - transform.position);
+                Debug.Log("2");
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSmooth);
-
+                Debug.Log("3");
                 // 前方に進む
                 transform.Translate(Vector3.forward * speed * Time.deltaTime);
-            }
-=======
-            Debug.Log("en");
-            PlayerFind = true;
-            urochoro = false;
-            Quaternion targetRotation = Quaternion.LookRotation(player.position - transform.position);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSmooth);
-
-                  // 前方に進む
-                  transform.Translate(Vector3.forward * speed * Time.deltaTime);
->>>>>>> MAETA
+                Debug.Log("4");
+            //}
         }
               
         }
@@ -103,8 +89,8 @@ public class ojamaAI : MonoBehaviour {
         if (coll.gameObject.tag == "Player")
         {
             Debug.Log("en_kaijo");
-            PlayerFind = false;
-            urochoro = true;
+           // PlayerFind = false;
+            haikai = true;
         }
     }
 
