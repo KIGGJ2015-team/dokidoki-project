@@ -31,10 +31,29 @@ public class PlayerSelect : MonoBehaviour
 
     Hashtable hash;
 
+    Mesh mesh;
+    Material[] materials;
+
     #endregion
 
 
     #region プロパティ
+
+    public Mesh PlayerMesh
+    {
+        get {return mesh; }
+    }
+
+    public Material[] PlayerMaterials
+    {
+        get {return materials; }
+    }
+
+    public int State
+    {
+        get {return state; }
+    }
+
     #endregion
 
 
@@ -43,6 +62,8 @@ public class PlayerSelect : MonoBehaviour
 	// 初期化処理
     void Awake()
     {
+        DontDestroyOnLoad(gameObject);
+
         hash = new Hashtable();
         hash.Add("easetype", iTween.EaseType.easeOutQuart);
         hash.Add("time", changeSpeed);
@@ -56,6 +77,8 @@ public class PlayerSelect : MonoBehaviour
             if(i == state)
             {
                 transform.GetChild(i).position = Vector3.zero;
+                mesh      = transform.GetChild(i).GetComponent<MeshFilter>().mesh;
+                materials = transform.GetChild(i).GetComponent<MeshRenderer>().materials;
                 continue;
             }
 
@@ -103,22 +126,23 @@ public class PlayerSelect : MonoBehaviour
             nextState = 0;
         }
         
-
         Vector3  nowPosition = new Vector3(0, 0, 0);
         Vector3 nextPosition = new Vector3(15 * direction * -1, 0, 0);
 
         transform.GetChild( nowState).position =  nowPosition;
         transform.GetChild(nextState).position = nextPosition;
 
-        hash["path"] = new Vector3[] { nowPosition, nowPosition + new Vector3(15 * direction, 0, 0)};        
+        hash["path"] = new Vector3[] {  nowPosition,  nowPosition + new Vector3(15 * direction, 0, 0)};        
 
-        iTween.MoveTo(transform.GetChild(nowState).gameObject, hash);
+        iTween.MoveTo(transform.GetChild( nowState).gameObject, hash);
 
-        hash["path"] = new Vector3[] { nextPosition, nextPosition + new Vector3(15 * direction, 0, 0) };
+        hash["path"] = new Vector3[] { nextPosition, nextPosition + new Vector3(15 * direction, 0, 0)};
 
         iTween.MoveTo(transform.GetChild(nextState).gameObject, hash);
 
         state = nextState;
+        mesh      = transform.GetChild(state).GetComponent<MeshFilter>().mesh;
+        materials = transform.GetChild(state).GetComponent<MeshRenderer>().materials;
     }
 	#endregion
 }
