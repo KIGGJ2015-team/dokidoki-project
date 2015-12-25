@@ -20,7 +20,7 @@ public class Player_Reticle : MonoBehaviour
     void Update()
     {
         ray = new Ray(transform.position, transform.forward);
-        if (Physics.Raycast(ray, out hit, limitrange))
+        if (Physics.Raycast(ray, out hit, limitrange, LayerMask.GetMask("Bullet")))
         {
             reticule.transform.position = hit.transform.position;
         }
