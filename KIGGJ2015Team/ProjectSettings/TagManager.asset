@@ -7,6 +7,8 @@ TagManager:
   - Barrier
   - CheckPoint
   - Radar
+  - ojama
+  - 'Obstacle '
   layers:
   - Default
   - TransparentFX
@@ -17,7 +19,7 @@ TagManager:
   - 
   - 
   - Radar
-  - 
+  - CheckPoint
   - 
   - 
   - 
