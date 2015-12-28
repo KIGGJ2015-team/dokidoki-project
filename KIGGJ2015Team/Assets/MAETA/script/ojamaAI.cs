@@ -13,12 +13,14 @@ public class ojamaAI : MonoBehaviour {
     bool haikai = true;
     [SerializeField]
     private Transform player;
-  
 
+    chara_timer chara_timer;
     timer timer;
+    [SerializeField]
+    public GameObject bullet;
+    public Transform spawn;
+    public float speed1 = 1000;
 
-
-  
     private void Start()
     {
         targetPosition = GetRandomPositionOnLevel();
@@ -28,7 +30,7 @@ public class ojamaAI : MonoBehaviour {
    
     private void Update()
     {
-
+        
         timer = GameObject.Find("GM").GetComponent<timer>();
 
         if (timer.GetisStart() == true)
@@ -66,10 +68,13 @@ public class ojamaAI : MonoBehaviour {
     void OnTriggerStay(Collider coll)
 
     {
+        chara_timer = GameObject.Find("GM").GetComponent<chara_timer>();
         if (coll.gameObject.tag == "Player")
         {
-            //if (PlayerFind)
-            //{
+            if (chara_timer.GetisStart() == true)
+            {
+                //if (PlayerFind)
+                //{
                 Debug.Log("en");
                 haikai = false;
                 Debug.Log("1");
@@ -80,9 +85,15 @@ public class ojamaAI : MonoBehaviour {
                 // 前方に進む
                 transform.Translate(Vector3.forward * speed * Time.deltaTime);
                 Debug.Log("4");
-            //}
+
+                GameObject obj = GameObject.Instantiate(bullet) as GameObject;
+                obj.transform.position = spawn.position;
+                Vector3 force;
+                force = this.gameObject.transform.forward * speed1;
+                obj.GetComponent<Rigidbody>().AddForce(force);
+                //}
+            }
         }
-              
         }
     void OnTriggerExit(Collider coll)
     {
