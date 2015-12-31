@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class chara_timer : MonoBehaviour {
-
-    float time_chara = 1;
+    [SerializeField]
+    float time_chara ;
     [SerializeField]
     bool isMove = false;
 
@@ -18,7 +18,7 @@ public class chara_timer : MonoBehaviour {
     {
         time_chara -= Time.deltaTime;
 
-        if (time_chara < 0)
+        if (time_chara < 0) time_chara = 0;
         {
             isMove = true;
         }
