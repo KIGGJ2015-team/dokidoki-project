@@ -76,13 +76,14 @@ public class PlayerSelect : MonoBehaviour
         {
             if(i == state)
             {
-                transform.GetChild(i).position = Vector3.zero;
-                mesh      = transform.GetChild(i).GetComponent<MeshFilter>().mesh;
-                materials = transform.GetChild(i).GetComponent<MeshRenderer>().materials;
+                transform.GetChild(i).localPosition = new Vector3(0, -1, 0);
+                //mesh      = transform.GetChild(i).GetComponent<MeshFilter>().mesh;
+                //materials = transform.GetChild(i).GetComponent<MeshRenderer>().materials;
                 continue;
             }
 
-            transform.GetChild(i).position = new Vector3(15, 0, 0);
+            float heightPosition = transform.GetChild(i).position.y;
+            transform.GetChild(i).localPosition = new Vector3(20, -1, 0);
         }
     }
 
@@ -126,23 +127,26 @@ public class PlayerSelect : MonoBehaviour
             nextState = 0;
         }
         
-        Vector3  nowPosition = new Vector3(0, 0, 0);
-        Vector3 nextPosition = new Vector3(15 * direction * -1, 0, 0);
+        float  nowHeight = transform.GetChild( nowState).position.y;
+        float nextHeight = transform.GetChild(nextState).position.y;
 
-        transform.GetChild( nowState).position =  nowPosition;
-        transform.GetChild(nextState).position = nextPosition;
+        Vector3  nowPosition = new Vector3(0, -1, 0);
+        Vector3 nextPosition = new Vector3(20 * direction * -1, -1, 0);
 
-        hash["path"] = new Vector3[] {  nowPosition,  nowPosition + new Vector3(15 * direction, 0, 0)};        
+        transform.GetChild( nowState).localPosition =  nowPosition;
+        transform.GetChild(nextState).localPosition = nextPosition;
+
+        hash["path"] = new Vector3[] {  nowPosition,  nowPosition + new Vector3(20 * direction, 0, 0)};        
 
         iTween.MoveTo(transform.GetChild( nowState).gameObject, hash);
 
-        hash["path"] = new Vector3[] { nextPosition, nextPosition + new Vector3(15 * direction, 0, 0)};
+        hash["path"] = new Vector3[] { nextPosition, nextPosition + new Vector3(20 * direction, 0, 0)};
 
         iTween.MoveTo(transform.GetChild(nextState).gameObject, hash);
 
         state = nextState;
-        mesh      = transform.GetChild(state).GetComponent<MeshFilter>().mesh;
-        materials = transform.GetChild(state).GetComponent<MeshRenderer>().materials;
+        //mesh      = transform.GetChild(state).GetComponent<MeshFilter>().mesh;
+        //materials = transform.GetChild(state).GetComponent<MeshRenderer>().materials;
     }
 	#endregion
 }
