@@ -3,19 +3,18 @@ using System.Collections;
 
 public class Bullet_Destroy : MonoBehaviour {
 
-    GameObject player;
     public float limitRange = 100;  //後々ステータスにまとめます。
-
+    Vector3 StartPos;
 
 	// Use this for initialization
 	void Start () {
-        player = GameObject.Find("player");
+        StartPos = transform.position;
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (Vector3.Distance(transform.position, player.transform.position) >= limitRange)
+        if (Vector3.Distance(transform.position, StartPos) >= limitRange)
         {
             Destroy(gameObject);
         }

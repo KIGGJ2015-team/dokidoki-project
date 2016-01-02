@@ -1,0 +1,167 @@
+fileFormatVersion: 2
+guid: f8094125dd63ea34fa7f6e82231710e0
+timeCreated: 1450690201
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: body2
+    100002: Center
+    100004: Head
+    100006: Hip
+    100008: Left_flap
+    100010: Left_flap 1
+    100012: Left_flap_base
+    100014: Left_wing
+    100016: Right_flag
+    100018: Right_flag_base
+    100020: Right_flap
+    100022: Right_wing
+    100024: Top
+    100026: top_hane
+    100028: //RootNode
+    400000: body2
+    400002: Center
+    400004: Head
+    400006: Hip
+    400008: Left_flap
+    400010: Left_flap 1
+    400012: Left_flap_base
+    400014: Left_wing
+    400016: Right_flag
+    400018: Right_flag_base
+    400020: Right_flap
+    400022: Right_wing
+    400024: Top
+    400026: top_hane
+    400028: //RootNode
+    4300000: Left_flap
+    4300002: Right_flap
+    4300004: top_hane
+    4300006: body2
+    7400000: zero_LeftRoll
+    9500000: //RootNode
+    13700000: body2
+    13700002: Left_flap
+    13700004: Right_flap
+    13700006: top_hane
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: zero_LeftRoll
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: body2
+        weight: 1
+      - path: Hip
+        weight: 1
+      - path: Hip/Center
+        weight: 1
+      - path: Hip/Center/Head
+        weight: 1
+      - path: Hip/Center/Head/Top
+        weight: 1
+      - path: Hip/Center/Left_wing
+        weight: 1
+      - path: Hip/Center/Left_wing/Left_flap_base
+        weight: 1
+      - path: Hip/Center/Left_wing/Left_flap_base/Left_flap 1
+        weight: 1
+      - path: Hip/Center/Right_wing
+        weight: 1
+      - path: Hip/Center/Right_wing/Right_flag_base
+        weight: 1
+      - path: Hip/Center/Right_wing/Right_flag_base/Right_flag
+        weight: 1
+      - path: Left_flap
+        weight: 1
+      - path: Right_flap
+        weight: 1
+      - path: top_hane
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

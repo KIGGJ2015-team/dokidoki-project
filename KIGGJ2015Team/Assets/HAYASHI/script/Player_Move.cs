@@ -27,6 +27,7 @@ public class Player_Move : MonoBehaviour {
 
     Player_Status playerstatus;
 
+    float Rotate;
     // Use this for initialization
     void Start () {
         fighter = GameObject.Find("fighter");
@@ -36,9 +37,11 @@ public class Player_Move : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         vec = transform.rotation;
+        Rotate = Input.GetAxisRaw("Horizontal");
+
         Yreverse();
-        transform.Rotate(transform.up, RotateSpeed * Input.GetAxisRaw("Horizontal"),Space.World);
-        transform.Rotate(Vector3.right, VRotateSpeed * Input.GetAxisRaw("Vertical"),Space.Self);
+        turn(Rotate);
+        transform.Rotate(Vector3.right, VRotateSpeed * Input.GetAxisRaw("Vertical"), Space.Self);
         if (Input.GetAxisRaw("Boost") < 1)
         {
             transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
@@ -47,6 +50,26 @@ public class Player_Move : MonoBehaviour {
         rolling();
         keepStability();
 	}
+
+    void turn(float rotate)
+    {
+        Vector3 topos = transform.eulerAngles;
+        topos.x = 0;
+
+        if (rotate < 0)
+        {
+            topos.z = 45;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(topos), 0.1f);
+        }
+        else if (rotate > 0)
+        {
+            topos.z = -45;
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(topos), 0.1f);
+        }
+//        Debug.Log(topos);
+        transform.Rotate(transform.up, RotateSpeed * rotate, Space.World);
+    }
+
 
     void rolling()
     {
