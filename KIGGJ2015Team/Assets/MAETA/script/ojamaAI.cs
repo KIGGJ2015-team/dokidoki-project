@@ -24,6 +24,7 @@ public class ojamaAI : MonoBehaviour {
     public GameObject bullet;
     public Transform spawn;
     public float speed1;
+    
 
     private void Start()
     {
