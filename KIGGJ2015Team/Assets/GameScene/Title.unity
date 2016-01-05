@@ -85,6 +85,10 @@ NavMeshSettings:
     cellSize: .166666672
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &103364382 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 139490, guid: cebe9e4733ce5774ead9b94c0e130427, type: 2}
+  m_PrefabInternal: {fileID: 1519357292}
 --- !u!1 &254158170
 GameObject:
   m_ObjectHideFlags: 0
@@ -769,6 +773,14 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 22366570, guid: cebe9e4733ce5774ead9b94c0e130427, type: 2}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22366570, guid: cebe9e4733ce5774ead9b94c0e130427, type: 2}
+      propertyPath: m_SortingOrder
+      value: 10000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cebe9e4733ce5774ead9b94c0e130427, type: 2}
   m_IsPrefabParent: 0
@@ -874,6 +886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de57d2cf4b3568242a17da0b57a4ddb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneManager: {fileID: 103364382}
 --- !u!114 &1839045570
 MonoBehaviour:
   m_ObjectHideFlags: 0
