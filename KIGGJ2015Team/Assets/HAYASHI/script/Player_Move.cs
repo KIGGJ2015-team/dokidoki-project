@@ -9,47 +9,95 @@ public class Player_Move : MonoBehaviour {
         reverse
     };
 
-    [SerializeField, TooltipAttribute("前進スピード")]
-    public float speed;
-    [SerializeField, TooltipAttribute("旋回スピード")]
-    public float RotateSpeed;
-    [SerializeField, TooltipAttribute("上下反転の有無")]
+    [SerializeField, Tooltip("Y軸の反転")]
     public Yaxis yaxis;
-    [SerializeField, Tooltip("ブースト速度")]
-    public float boostSpeed;
-    [SerializeField, Tooltip("ロール速度")]
-    public float rollSpeed;
+
+    GameObject system;
+    Player_Status playerstatus;
+
+    float speed;
 
     float VRotateSpeed;     //Ｙ軸のスピード
-    float time = 0;         //時間計測
+    float boosttime = 0;
+
     Quaternion vec;
     GameObject fighter;
 
-    Player_Status playerstatus;
 
     float Rotate;
+
+    bool rollingflg = false;
+    float rollingTime = 0;
+
+    Rigidbody rigidbody;
+
     // Use this for initialization
     void Start () {
         fighter = GameObject.Find("fighter");
+        system = GameObject.Find("System");
+        playerstatus = system.GetComponent<Player_Status>();
+
+        rigidbody = GetComponent<Rigidbody>();
+
 	
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        //プレイヤーの姿勢を保持
         vec = transform.rotation;
+        //旋回の判断
         Rotate = Input.GetAxisRaw("Horizontal");
 
+
+
+        //Y軸反転
         Yreverse();
+        //旋回
         turn(Rotate);
-        transform.Rotate(Vector3.right, VRotateSpeed * Input.GetAxisRaw("Vertical"), Space.Self);
-        if (Input.GetAxisRaw("Boost") < 1)
+        //ローリング
+        if (rollingflg)
         {
-            transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
+            rolling();
+         }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                rollingflg = true;
+            }
         }
-        else transform.Translate(Vector3.forward * boostSpeed * Time.deltaTime, Space.Self);
-        rolling();
+
+        //ブーストの有無
+        SpeedChange();
+        //常に前進
+        transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
+        //ボタンを離したら水平に戻る
         keepStability();
-	}
+    }
+
+    void SpeedChange()
+    {
+        if (Input.GetButton("Boost"))
+        {
+            boosttime += Time.deltaTime;
+            if (boosttime <= playerstatus.Boostlimit)
+            {
+                speed = playerstatus.BoostSpeed;
+//                Debug.Log("boostON");
+            }else
+            {
+                speed = playerstatus.Speed;
+//                Debug.Log("boostLIMIT");
+            }
+            
+        }else
+        {
+            boosttime = 0;
+            speed = playerstatus.Speed;
+//            Debug.Log("boostOFF");
+        }
+    }
 
     void turn(float rotate)
     {
@@ -67,26 +115,41 @@ public class Player_Move : MonoBehaviour {
             transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(topos), 0.1f);
         }
 //        Debug.Log(topos);
-        transform.Rotate(transform.up, RotateSpeed * rotate, Space.World);
+        transform.Rotate(transform.up, playerstatus.RotateSpeed * rotate, Space.World);
+        transform.Rotate(Vector3.right, VRotateSpeed * Input.GetAxisRaw("Vertical"), Space.Self);
     }
-
 
     void rolling()
     {
-        if (Input.GetAxisRaw("Horizontal")>0)
+        rollingTime += Time.deltaTime;
+
+        if (rollingTime < 0.5)
         {
-            if (Input.GetButton("Boost"))
+            if (Input.GetKeyDown(KeyCode.RightArrow))
             {
-                transform.Translate(Vector3.right * rollSpeed * Time.deltaTime, Space.Self);
+                Debug.Log("doubleTap:R");
+                transform.Translate(Vector3.right * playerstatus.RollingSpeed * Time.deltaTime, Space.Self);
+                rollingflg = false;
+                rollingTime = 0;
+            }else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                Debug.Log("doubleTap:L");
+                transform.Translate(-Vector3.right * playerstatus.RollingSpeed * Time.deltaTime, Space.Self);
+                rollingflg = false;
+                rollingTime = 0;
             }
         }
-        else if (Input.GetAxisRaw("Horizontal")<0)
+        else
         {
-            if (Input.GetButton("Boost")) transform.Translate(-Vector3.right * rollSpeed * Time.deltaTime, Space.Self);
+            Debug.Log("reset");
+            // reset
+            rollingflg = false;
+            rollingTime = 0.0f;
+
         }
 
-    }
 
+    }
     void keepStability()
     {
         if (!Input.anyKey)
@@ -105,10 +168,10 @@ public class Player_Move : MonoBehaviour {
         switch (yaxis)
         {
             case Yaxis.normal:
-                VRotateSpeed = -RotateSpeed;
+                VRotateSpeed = -playerstatus.RotateSpeed;
                 break;
             case Yaxis.reverse:
-                VRotateSpeed = RotateSpeed;
+                VRotateSpeed = playerstatus.RotateSpeed;
                 break;
         }
 
