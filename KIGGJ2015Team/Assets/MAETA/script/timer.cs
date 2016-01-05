@@ -17,7 +17,7 @@ public class timer : MonoBehaviour {
 	void Update () {
         time -= Time.deltaTime;
 
-        if (time < 0)
+        if (time < 0)  
         {
             isStart = true;
         }
