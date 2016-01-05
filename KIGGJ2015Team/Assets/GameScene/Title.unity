@@ -382,7 +382,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 100
     m_FontStyle: 2
     m_BestFit: 0
     m_MinSize: 10
@@ -399,10 +399,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 802020307}
---- !u!1 &1317293505 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 139490, guid: cebe9e4733ce5774ead9b94c0e130427, type: 2}
-  m_PrefabInternal: {fileID: 1519357292}
 --- !u!1 &1385186645
 GameObject:
   m_ObjectHideFlags: 0
@@ -769,10 +765,6 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 139490, guid: cebe9e4733ce5774ead9b94c0e130427, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 136518, guid: cebe9e4733ce5774ead9b94c0e130427, type: 2}
       propertyPath: m_IsActive
       value: 0
@@ -835,7 +827,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 30
+    m_FontSize: 100
     m_FontStyle: 2
     m_BestFit: 0
     m_MinSize: 10
@@ -882,7 +874,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de57d2cf4b3568242a17da0b57a4ddb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneManager: {fileID: 1317293505}
 --- !u!114 &1839045570
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -910,11 +901,11 @@ MonoBehaviour:
   m_Script: {fileID: 1980459831, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
+  m_ReferenceResolution: {x: 1280, y: 720}
+  m_ScreenMatchMode: 1
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
@@ -928,7 +919,7 @@ Canvas:
   m_GameObject: {fileID: 1839045568}
   m_Enabled: 1
   serializedVersion: 2
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
