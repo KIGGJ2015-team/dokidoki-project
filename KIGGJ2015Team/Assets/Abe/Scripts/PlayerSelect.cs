@@ -30,10 +30,6 @@ public class PlayerSelect : MonoBehaviour
     private float changeSpeed;
 
     Hashtable hash;
-
-    Mesh mesh;
-    Material[] materials;
-
     #endregion
 
 
