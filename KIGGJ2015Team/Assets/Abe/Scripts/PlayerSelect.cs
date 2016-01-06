@@ -39,16 +39,6 @@ public class PlayerSelect : MonoBehaviour
 
     #region プロパティ
 
-    public Mesh PlayerMesh
-    {
-        get {return mesh; }
-    }
-
-    public Material[] PlayerMaterials
-    {
-        get {return materials; }
-    }
-
     public int State
     {
         get {return state; }
