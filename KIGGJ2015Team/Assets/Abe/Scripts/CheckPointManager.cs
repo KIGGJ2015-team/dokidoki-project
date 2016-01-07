@@ -41,6 +41,11 @@ public class CheckPointManager : MonoBehaviour
         get { return keyItemsData; }
     }
 
+    public int CheckPointNumber
+    {
+        get { return checkPointNumber; }
+    }
+
     public bool IsGetAllKey
     {
         get
@@ -57,7 +62,7 @@ public class CheckPointManager : MonoBehaviour
     // 初期化処理
     void Awake()
     {
-
+        
     }
 
     // 更新前処理
@@ -69,11 +74,13 @@ public class CheckPointManager : MonoBehaviour
     // 更新処理
     void Update()
     {
-
+        
     }
 
     void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Enter");
+
         if(other.gameObject.tag != "CheckPoint")
         {
             return;
@@ -89,6 +96,7 @@ public class CheckPointManager : MonoBehaviour
             }
         }
 
+        
         keyItemsData.Add(other.gameObject);
         GoalOpenCheck();
     }
@@ -99,7 +107,7 @@ public class CheckPointManager : MonoBehaviour
         {
             //ゴールの処理
             Debug.Log("Goal Open");
-            informationText.GetComponent<GameInformation>().ShowInformation("ゴールオープン！");
+            //informationText.GetComponent<GameInformation>().ShowInformation("ゴールオープン！");
         }
     }
 

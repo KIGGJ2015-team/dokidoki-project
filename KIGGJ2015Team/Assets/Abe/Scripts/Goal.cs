@@ -74,7 +74,7 @@ public class Goal : MonoBehaviour
         //ゴールの処理
         Debug.Log("Goal!!!");
 
-        informationText.GetComponent<GameInformation>().ShowInformation("ゴール！");
+        //informationText.GetComponent<GameInformation>().ShowInformation("ゴール！");
     }
 	#endregion
 }
