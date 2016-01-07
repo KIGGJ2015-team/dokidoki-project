@@ -18,13 +18,11 @@ using System.Collections.Generic;
 public class PlayerImporter : MonoBehaviour
 {
 	#region 変数
-
-    [SerializeField, Tooltip("プレイヤーとライバルのレーサー")]
-    private List<GameObject> importObjects;
-
     [SerializeField, Tooltip("モデルデータ")]
     private List<GameObject> modelData;
 
+    [SerializeField, Tooltip("プレイヤーのバレット")]
+    private GameObject bullet;
 
     #endregion
 
@@ -40,8 +38,29 @@ public class PlayerImporter : MonoBehaviour
     {
         GameObject selectManager = GameObject.Find("SelectManager");
         
+        PlayerSelect manager = GetComponent<PlayerSelect>();
         
-        
+        GameObject   player = Instantiate(modelData[manager.State]);
+        GameObject   spawn  = new GameObject("Spawn");
+
+        //子に設定
+        spawn.transform.parent = player.transform;
+
+        //プレイヤースクリプトの設定
+        player.AddComponent<Player_Move>();
+        Player_Shot shot = player.AddComponent<Player_Shot>();
+        shot.bullet = bullet;
+        shot.spawn  = spawn.transform;
+
+        //当たり判定の設定
+        Rigidbody rigidbody   = player.AddComponent<Rigidbody>();
+        rigidbody.isKinematic = false;
+        rigidbody.useGravity  = false;
+
+        spawn.AddComponent<Player_Reticle>();
+
+        spawn.transform.position = new Vector3(0, 0, 8.0f);
+
         Destroy(selectManager);
     }
 
