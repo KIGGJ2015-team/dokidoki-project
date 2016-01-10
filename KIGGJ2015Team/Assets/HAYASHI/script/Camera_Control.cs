@@ -15,7 +15,7 @@ public class Camera_Control : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void LateUpdate () {
         transform.rotation = Quaternion.Lerp(transform.rotation, fighter.transform.rotation, rotateSpeed);
         transform.position = fighter.transform.position;
 

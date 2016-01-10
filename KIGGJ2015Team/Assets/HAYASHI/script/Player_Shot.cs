@@ -8,7 +8,7 @@ public class Player_Shot : MonoBehaviour {
     Player_Status playerstatus;
     GameObject system;
     public Animator animator;
-
+    float shotTime = 0;
     void Start()
     {
         system = GameObject.Find("System");
@@ -28,13 +28,13 @@ public class Player_Shot : MonoBehaviour {
 
     void Shoot()
     {
-        float shotTime = 0;
         if (shotTime <= playerstatus.BulletInterbal)
         {
             shotTime += Time.deltaTime;
         }
         else if (shotTime > playerstatus.BulletInterbal)
         {
+            Debug.Log("shot!");
             GameObject obj = GameObject.Instantiate(bullet) as GameObject;
             obj.transform.position = spawn.position;
             Vector3 force;
