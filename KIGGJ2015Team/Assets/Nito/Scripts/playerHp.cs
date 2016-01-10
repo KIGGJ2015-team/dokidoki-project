@@ -14,17 +14,17 @@ public class playerHp : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        pHp = gage.fillAmount = 1.0f;
+        pHp = gage.fillAmount = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        pHp = pHp + speed;
-        if (pHp >= 1)
+        pHp = pHp - speed;
+        if (pHp <= 0)
         {
-           pHp = 0.01f;
+           pHp = 1.0f;
         }
 
         gage.fillAmount = pHp;

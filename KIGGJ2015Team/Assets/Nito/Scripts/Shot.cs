@@ -7,11 +7,21 @@ public class Shot : MonoBehaviour {
     public Transform spawn;
     public float speed = 1000;
 
+    public rapidSaver shooter;
+   
+    void start()
+    {
+        shooter.GetComponent<rapidSaver>();
+
+    }
    
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+
+        if (Input.GetKeyDown(KeyCode.W) &&
+            shooter.GetScore()>0.25f)
         {
+            shooter.AddBullet(-0.25f);
             Shoot();
         }
     }
