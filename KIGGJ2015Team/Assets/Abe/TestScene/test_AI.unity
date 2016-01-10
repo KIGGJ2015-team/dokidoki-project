@@ -268,7 +268,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 60791858}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .49000001, y: 0, z: -7.82999992}
+  m_LocalPosition: {x: .400000006, y: 0, z: 31.7000008}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1810438314}
@@ -535,6 +535,10 @@ Prefab:
     - target: {fileID: 119582, guid: 1a1752d25d7d88d418e5bbbd6bd5783d, type: 2}
       propertyPath: m_TagString
       value: Barrier
+      objectReference: {fileID: 0}
+    - target: {fileID: 119582, guid: 1a1752d25d7d88d418e5bbbd6bd5783d, type: 2}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1a1752d25d7d88d418e5bbbd6bd5783d, type: 2}

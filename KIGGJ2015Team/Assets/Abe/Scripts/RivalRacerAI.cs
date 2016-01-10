@@ -17,7 +17,7 @@ using System.Collections.Generic;
 [AddComponentMenu("MyScript/RivalRacerAI")]
 public class RivalRacerAI : MonoBehaviour
 {
-	#region 変数
+    #region 変数
 
     [SerializeField, Tooltip("前進スピード")]
     private float speed;
@@ -45,28 +45,59 @@ public class RivalRacerAI : MonoBehaviour
 
     #region メソッド
 
-	// 初期化処理
+    // 初期化処理
     void Awake()
     {
-
+        hash = new Hashtable();
     }
 
     // 更新前処理
     void Start()
     {
         GameObject[] objects = GameObject.FindGameObjectsWithTag("CheckPoint");
+        GameObject   goal    = GameObject.Find("Goal");
+        Vector3[]    path    = new Vector3[(objects.Length) * 2 + 3];
 
-        int rand = Random.Range(0, objects.Length - 1);
+        List<int> rand = new List<int>();
 
-        Vector3 destination = objects[rand].transform.position;
+        for(int i = 2; i <= objects.Length * 2; i+=2)
+        {
+            int r = Random.Range(0, objects.Length);
+            foreach(int value in rand)
+            {
+                if(value == r)
+                {
+                    goto CONTINUE;
+                }
+            }
 
-        Vector3[] path = new Vector3[6];
+            path[i]   = objects[r].transform.position;
+            path[i-1] = path[i] + new Vector3(Random.Range(-50, 50), Random.Range(-50, 50), Random.Range(-50, 50));
+            rand.Add(r);
+
+            continue;
+
+            CONTINUE:
+                //乱数が決まるまでループ
+                i -= 1;
+                continue;
+        }
+
         path[0] = transform.position;
-        path[5] = destination;
+        path[path.Length-2] = new Vector3(Random.Range(-200, 200), Random.Range(-200, 200), Random.Range(-200, 200));
+        path[path.Length-1] = goal.transform.position;
+
+        Debug.Log(path);
+        hash.Add("path", path);
+        hash.Add("speed", speed);
+        hash.Add("easetype", iTween.EaseType.linear);
+
+        iTween.MoveTo(gameObject, hash);
     }
 
     void UpdatePosition()
     {
+
     }
 
     IEnumerator Turning()
@@ -96,7 +127,10 @@ public class RivalRacerAI : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        
+        if(other.tag == "goal")
+        {
+
+        }
     }
-	#endregion
+    #endregion
 }
