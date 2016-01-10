@@ -158,7 +158,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 494300, guid: fee50993c63d6f441b062afcc7366248, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -10
       objectReference: {fileID: 0}
     - target: {fileID: 494300, guid: fee50993c63d6f441b062afcc7366248, type: 2}
       propertyPath: m_LocalPosition.z
@@ -208,6 +208,7 @@ GameObject:
   - 23: {fileID: 60791859}
   - 114: {fileID: 60791864}
   - 114: {fileID: 60791863}
+  - 54: {fileID: 60791865}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -304,6 +305,21 @@ MonoBehaviour:
   keyItemsData: []
   checkPointNumber: 4
   informationText: {fileID: 0}
+--- !u!54 &60791865
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 60791858}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: .0500000007
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &562926160
 Prefab:
   m_ObjectHideFlags: 0
@@ -367,7 +383,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 494300, guid: fee50993c63d6f441b062afcc7366248, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 494300, guid: fee50993c63d6f441b062afcc7366248, type: 2}
       propertyPath: m_LocalPosition.z
