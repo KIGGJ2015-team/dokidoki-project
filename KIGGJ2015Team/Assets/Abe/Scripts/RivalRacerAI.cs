@@ -22,24 +22,16 @@ public class RivalRacerAI : MonoBehaviour
     [SerializeField, Tooltip("前進スピード")]
     private float speed;
 
-    [SerializeField, Tooltip("旋回スピード")]
-    private float RotateSpeed;
+    [SerializeField, Tooltip("弾を出す場所")]
+    GameObject spawn;
 
-    [SerializeField, Tooltip("ブースト速度")]
-    private float boostSpeed;
+    [SerializeField, Tooltip("弾のオブジェクト")]
+    GameObject bullet;
 
-    [SerializeField, Tooltip("ロール速度")]
-    private float rollSpeed;
+    [SerializeField, Tooltip("弾のスピード")]
+    float bulletSpeed = 1000;
 
-    float time = 0;         //時間計測
-    Quaternion vec;
-    GameObject fighter;
-
-    float horizontalSpeed = 0;
-    float verticalSpeed = 0;
-
-    private List<GameObject> checkPoints = new List<GameObject>();
-    GameObject nextObject;
+    Hashtable  hash;
 
     #endregion
 
@@ -63,69 +55,48 @@ public class RivalRacerAI : MonoBehaviour
     void Start()
     {
         GameObject[] objects = GameObject.FindGameObjectsWithTag("CheckPoint");
-        checkPoints.AddRange(objects);
 
-        SearchNearCheckPoint();
+        int rand = Random.Range(0, objects.Length - 1);
+
+        Vector3 destination = objects[rand].transform.position;
+
+        Vector3[] path = new Vector3[6];
+        path[0] = transform.position;
+        path[5] = destination;
     }
 
-    // 更新処理
-    void Update()
+    void UpdatePosition()
     {
-        Ray ray = new Ray(transform.position, transform.forward);
-        RaycastHit hitInfo;
-
-        if(!Physics.Raycast(ray, out hitInfo))
-        {
-            Plane hPlane = new Plane(transform.position, transform.right); 
-            Plane vPlane = new Plane(transform.position, transform.up);
-
-            Vector3 nextPosition = nextObject.transform.position;
-
-            horizontalSpeed = (hPlane.GetSide(nextPosition)) ? 1 : -1;
-            verticalSpeed   = (vPlane.GetSide(nextPosition)) ? 1 : -1;
-        }
-        else
-        {
-            if(hitInfo.collider.tag == "Obstacle" ||
-               hitInfo.collider.tag == "Player")
-            {
-
-            }
-            else
-            {
-                horizontalSpeed = 0;
-                verticalSpeed   = 0;
-            }
-        }
-
-        vec = transform.rotation;
-        transform.Rotate(transform.up , RotateSpeed * horizontalSpeed, Space.World);
-        transform.Rotate(Vector3.right, RotateSpeed * verticalSpeed  , Space.Self);
-
-        if (Input.GetAxisRaw("Boost") < 1)
-        {
-            transform.Translate(Vector3.forward * speed      * Time.deltaTime, Space.Self);
-        }
-        else
-        {
-            transform.Translate(Vector3.forward * boostSpeed * Time.deltaTime, Space.Self);
-        }
-        //rolling();
-        //keepStability();
     }
 
-    void SearchNearCheckPoint()
+    IEnumerator Turning()
     {
-        float distance = float.MaxValue;
-        foreach(var checkPoint in checkPoints)
+        //どちらかに旋回し　障害物を迂回
+
+        float time = Random.Range(2.0f, 5.0f);
+
+        while(true)
         {
-            float dis = Vector3.Distance(transform.position, checkPoint.transform.position);
-            if(dis < distance)
+            Debug.Log("turn");
+            time -= Time.deltaTime;
+            if(time <= 0)
             {
-                distance = dis;
-                nextObject = checkPoint;
+                yield break;
             }
+
+            UpdatePosition();
+            yield return null;
         }
+    }
+
+    void RandomRoot()
+    {
+
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        
     }
 	#endregion
 }

@@ -1,0 +1,195 @@
+fileFormatVersion: 2
+guid: 36a776a9644c2844fa795fa2cdb8c43e
+timeCreated: 1452056079
+licenseType: Free
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: bottom
+    100002: Chin_base
+    100004: Chin_down
+    100006: Chin_down_Base
+    100008: Chin_up
+    100010: //RootNode
+    100012: dora_ago2
+    100014: dora_human_ver00:bone1
+    100016: dora_human_ver00:bone10_branch
+    100018: dora_human_ver00:bone11_end
+    100020: dora_human_ver00:bone13
+    100022: dora_human_ver00:bone13_Copy
+    100024: dora_human_ver00:bone14
+    100026: dora_human_ver00:bone14_Copy
+    100028: dora_human_ver00:bone15
+    100030: dora_human_ver00:bone15_Copy
+    100032: dora_human_ver00:bone15_Copy_end
+    100034: dora_human_ver00:bone15_end
+    100036: dora_human_ver00:bone1_branch
+    100038: dora_human_ver00:bone3
+    100040: dora_human_ver00:bone3_Copy
+    100042: dora_human_ver00:bone4
+    100044: dora_human_ver00:bone4_Copy
+    100046: dora_human_ver00:bone5
+    100048: dora_human_ver00:bone5_Copy
+    100050: dora_human_ver00:bone5_Copy_end
+    100052: dora_human_ver00:bone5_end
+    100054: dora_human_ver00:pCube1
+    100056: dora_human_ver00:polySurface18
+    100058: dora_human_ver00:pSphere1
+    100060: Head
+    100062: Hips
+    100064: Left_wing
+    100066: LeftBase
+    100068: LeftFoot
+    100070: LeftForeWing
+    100072: LeftForeWing1
+    100074: LeftForeWingTop
+    100076: LeftLeg
+    100078: LeftToeBase
+    100080: LeftUpLeg
+    100082: Neck
+    100084: Right_wing
+    100086: RightBase
+    100088: RightFoot
+    100090: RightForeWing
+    100092: RightForeWing1
+    100094: RightForeWingTop
+    100096: RightLeg
+    100098: RightToeBase
+    100100: RightUpLeg
+    100102: Spine
+    100104: Spine1
+    100106: Tail1
+    100108: Tail2
+    100110: TailBase
+    100112: TailTop
+    400000: bottom
+    400002: Chin_base
+    400004: Chin_down
+    400006: Chin_down_Base
+    400008: Chin_up
+    400010: //RootNode
+    400012: dora_ago2
+    400014: dora_human_ver00:bone1
+    400016: dora_human_ver00:bone10_branch
+    400018: dora_human_ver00:bone11_end
+    400020: dora_human_ver00:bone13
+    400022: dora_human_ver00:bone13_Copy
+    400024: dora_human_ver00:bone14
+    400026: dora_human_ver00:bone14_Copy
+    400028: dora_human_ver00:bone15
+    400030: dora_human_ver00:bone15_Copy
+    400032: dora_human_ver00:bone15_Copy_end
+    400034: dora_human_ver00:bone15_end
+    400036: dora_human_ver00:bone1_branch
+    400038: dora_human_ver00:bone3
+    400040: dora_human_ver00:bone3_Copy
+    400042: dora_human_ver00:bone4
+    400044: dora_human_ver00:bone4_Copy
+    400046: dora_human_ver00:bone5
+    400048: dora_human_ver00:bone5_Copy
+    400050: dora_human_ver00:bone5_Copy_end
+    400052: dora_human_ver00:bone5_end
+    400054: dora_human_ver00:pCube1
+    400056: dora_human_ver00:polySurface18
+    400058: dora_human_ver00:pSphere1
+    400060: Head
+    400062: Hips
+    400064: Left_wing
+    400066: LeftBase
+    400068: LeftFoot
+    400070: LeftForeWing
+    400072: LeftForeWing1
+    400074: LeftForeWingTop
+    400076: LeftLeg
+    400078: LeftToeBase
+    400080: LeftUpLeg
+    400082: Neck
+    400084: Right_wing
+    400086: RightBase
+    400088: RightFoot
+    400090: RightForeWing
+    400092: RightForeWing1
+    400094: RightForeWingTop
+    400096: RightLeg
+    400098: RightToeBase
+    400100: RightUpLeg
+    400102: Spine
+    400104: Spine1
+    400106: Tail1
+    400108: Tail2
+    400110: TailBase
+    400112: TailTop
+    4300000: dora_ago2
+    4300002: dora_human_ver00:polySurface18
+    4300004: dora_human_ver00:pCube1
+    4300006: dora_human_ver00:pSphere1
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: dora_ago2
+    13700002: dora_human_ver00:pCube1
+    13700004: dora_human_ver00:polySurface18
+    13700006: dora_human_ver00:pSphere1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
