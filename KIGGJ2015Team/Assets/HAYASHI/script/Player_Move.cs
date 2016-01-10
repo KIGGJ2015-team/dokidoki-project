@@ -28,8 +28,10 @@ public class Player_Move : MonoBehaviour {
 
     bool rollingflg = false;
     float rollingTime = 0;
+    float keeprolingtime = 0;
 
-    Rigidbody rigidbody;
+    int keeprolling;    //norolling=0,right=1,left=2
+
 
     // Use this for initialization
     void Start () {
@@ -37,8 +39,7 @@ public class Player_Move : MonoBehaviour {
         system = GameObject.Find("System");
         playerstatus = system.GetComponent<Player_Status>();
 
-        rigidbody = GetComponent<Rigidbody>();
-
+        boosttime = playerstatus.Boostlimit;
 	
 	}
 	
@@ -76,26 +77,52 @@ public class Player_Move : MonoBehaviour {
         keepStability();
     }
 
+    void FixedUpdate()
+    {
+        if (keeprolling==1)
+        {
+            keeprolingtime += Time.deltaTime;
+            transform.Translate(Vector3.right * playerstatus.RollingSpeed * Time.deltaTime, Space.Self);
+            if (keeprolingtime >= 0.5)
+            {
+                keeprolling = 0;
+                keeprolingtime = 0;
+            }
+        }else if(keeprolling == 2)
+        {
+            keeprolingtime += Time.deltaTime;
+            transform.Translate(-Vector3.right * playerstatus.RollingSpeed * Time.deltaTime, Space.Self);
+            if (keeprolingtime >= 0.5)
+            {
+                keeprolling = 0;
+                keeprolingtime = 0;
+            }
+        }
+    }
+
     void SpeedChange()
     {
+        Debug.Log(boosttime);
+
         if (Input.GetButton("Boost"))
         {
-            boosttime += Time.deltaTime;
-            if (boosttime <= playerstatus.Boostlimit)
+            boosttime -= Time.deltaTime;
+            if (boosttime >= 0)
             {
                 speed = playerstatus.BoostSpeed;
-//                Debug.Log("boostON");
+                Debug.Log("boostON");
             }else
             {
                 speed = playerstatus.Speed;
-//                Debug.Log("boostLIMIT");
+                Debug.Log("boostLIMIT");
             }
             
         }else
         {
-            boosttime = 0;
+            boosttime += Time.deltaTime;
+            boosttime = Mathf.Clamp(boosttime, 0, playerstatus.Boostlimit);
             speed = playerstatus.Speed;
-//            Debug.Log("boostOFF");
+            Debug.Log("boostOFF");
         }
     }
 
@@ -128,13 +155,13 @@ public class Player_Move : MonoBehaviour {
             if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 Debug.Log("doubleTap:R");
-                transform.Translate(Vector3.right * playerstatus.RollingSpeed * Time.deltaTime, Space.Self);
+                keeprolling = 1;
                 rollingflg = false;
                 rollingTime = 0;
             }else if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 Debug.Log("doubleTap:L");
-                transform.Translate(-Vector3.right * playerstatus.RollingSpeed * Time.deltaTime, Space.Self);
+                keeprolling = 2;
                 rollingflg = false;
                 rollingTime = 0;
             }

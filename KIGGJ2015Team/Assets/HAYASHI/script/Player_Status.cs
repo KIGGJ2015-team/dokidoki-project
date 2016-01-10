@@ -4,7 +4,7 @@ using System.Collections;
 public class Player_Status : MonoBehaviour {
 
     public enum PlayerType{
-        fighter,
+        zero,
         human,
         dragon,
         SF,
@@ -12,6 +12,7 @@ public class Player_Status : MonoBehaviour {
 
     };
     public PlayerType playertype;
+
 
 
     [SerializeField, TooltipAttribute("前進スピード")]
@@ -72,20 +73,29 @@ public class Player_Status : MonoBehaviour {
         get { return bulletspeed; }
     }
 
+    [SerializeField, Tooltip("攻撃力")]
+    private float damage;
+    public float Damage
+    {
+        set { damage = value; }
+        get { return damage; }
+    }
+
 
     // Use this for initialization
     void Start () {
         switch (playertype)
         {
-            case PlayerType.fighter:
+            case PlayerType.zero:
                 speed = 20;
                 rotatespeed = 1;
                 boostspeed = 40;
                 boostlimit = 1;
                 boostcooling = 0.1f;
-                RollingSpeed = 10;
+                RollingSpeed = 15;
                 RollingLimitTime = 0.5f;
                 bulletspeed = 1000;
+                damage = 0;     //未定
                 break;
             case PlayerType.dragon:
                 break;
@@ -102,6 +112,7 @@ public class Player_Status : MonoBehaviour {
                 RollingSpeed = 0;
                 RollingLimitTime = 0;
                 bulletspeed = 0;
+                damage = 0;
                 break;
         }
         
@@ -112,4 +123,6 @@ public class Player_Status : MonoBehaviour {
 	void Update () {
 	
 	}
+
+
 }
