@@ -32,12 +32,14 @@ public class Player_Move : MonoBehaviour {
 
     int keeprolling;    //norolling=0,right=1,left=2
 
+    Animator animator;
 
     // Use this for initialization
     void Start () {
         fighter = GameObject.Find("fighter");
         system = GameObject.Find("System");
         playerstatus = system.GetComponent<Player_Status>();
+        animator = GetComponent<Animator>();
 
         boosttime = playerstatus.Boostlimit;
 	
@@ -75,12 +77,35 @@ public class Player_Move : MonoBehaviour {
         transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
         //ボタンを離したら水平に戻る
         keepStability();
+        //アニメ‐ジョンの再生
+        if (Input.GetButton("Fire1"))
+        {
+            animator.Play("Shot");
+        }
+        else
+        {
+            switch (keeprolling)
+            {
+                case 0:
+                    animator.Play("idle");
+                    break;
+                case 1:
+                    animator.Play("Right_Rolling");
+                    break;
+                case 2:
+                    animator.Play("Left_Rolling");
+                    break;
+
+
+            }
+        }
     }
 
     void FixedUpdate()
     {
         if (keeprolling==1)
         {
+
             keeprolingtime += Time.deltaTime;
             transform.Translate(Vector3.right * playerstatus.RollingSpeed * Time.deltaTime, Space.Self);
             if (keeprolingtime >= 0.5)
@@ -102,7 +127,6 @@ public class Player_Move : MonoBehaviour {
 
     void SpeedChange()
     {
-        Debug.Log(boosttime);
 
         if (Input.GetButton("Boost"))
         {
@@ -164,6 +188,7 @@ public class Player_Move : MonoBehaviour {
                 keeprolling = 2;
                 rollingflg = false;
                 rollingTime = 0;
+
             }
         }
         else

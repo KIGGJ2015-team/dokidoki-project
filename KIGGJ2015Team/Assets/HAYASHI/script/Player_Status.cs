@@ -73,6 +73,14 @@ public class Player_Status : MonoBehaviour {
         get { return bulletspeed; }
     }
 
+    [SerializeField, Tooltip("弾の発射間隔")]
+    private float bulletinterbal;
+    public float BulletInterbal
+    {
+        set { bulletinterbal = value; }
+        get { return bulletinterbal; }
+    }
+
     [SerializeField, Tooltip("攻撃力")]
     private float damage;
     public float Damage
@@ -80,6 +88,15 @@ public class Player_Status : MonoBehaviour {
         set { damage = value; }
         get { return damage; }
     }
+
+    [SerializeField, Tooltip("HP")]
+    private float hp;
+    public float HP
+    {
+        set { hp = value; }
+        get { return hp; }
+    }
+
 
 
     // Use this for initialization
@@ -95,7 +112,9 @@ public class Player_Status : MonoBehaviour {
                 RollingSpeed = 15;
                 RollingLimitTime = 0.5f;
                 bulletspeed = 1000;
+                bulletinterbal = 0.5f;
                 damage = 0;     //未定
+                hp = 0;         //未定
                 break;
             case PlayerType.dragon:
                 break;

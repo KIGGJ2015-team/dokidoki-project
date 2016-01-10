@@ -7,12 +7,13 @@ public class Player_Reticle : MonoBehaviour
     Ray ray;
     RaycastHit hit;
     public float limitrange;
-    GameObject reticule;
+    public GameObject reticule;
 
     // Use this for initialization
     void Start()
     {
-        reticule = GameObject.Find("reticle");
+        Instantiate(reticule);
+
 
     }
 
