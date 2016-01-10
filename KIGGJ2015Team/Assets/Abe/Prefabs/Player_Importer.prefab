@@ -40,10 +40,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelData:
-  - {fileID: 100040, guid: 5057cb1bc94008e42ad4fec2e93133dc, type: 3}
-  - {fileID: 100002, guid: 89c379d8e29ba8441904854e8cfc9fef, type: 3}
-  - {fileID: 100028, guid: ba77127bfe5ff24429c1535ceaeff527, type: 3}
-  - {fileID: 100008, guid: 88ec3a3cc093f46419bf43db89da388a, type: 3}
+  - {fileID: 143386, guid: 338ca9b05e8735a4e8706ecb56376214, type: 2}
+  - {fileID: 178794, guid: 75d5bc04407d5e74ca0fecaecb83e2ee, type: 2}
+  - {fileID: 119024, guid: 45dbefcb9b296ac4e8f6819362c96ee6, type: 2}
+  - {fileID: 189388, guid: 3a75fd1c4938e3341b44e199ff4108eb, type: 2}
   bullet: {fileID: 127496, guid: e90c9f606904aa1448beaeb3aed083b0, type: 2}
 --- !u!1001 &100100000
 Prefab:

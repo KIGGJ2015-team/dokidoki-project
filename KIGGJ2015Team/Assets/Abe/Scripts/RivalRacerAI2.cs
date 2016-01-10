@@ -100,7 +100,7 @@ public class RivalRacerAI2 : MonoBehaviour
             Ray ray = new Ray(transform.position, transform.forward);
             RaycastHit hitInfo;
 
-            if(!Physics.Raycast(ray, out hitInfo, 20))
+            if(!Physics.Raycast(ray, out hitInfo, 1000))
             {
                 //どこに目標物があるのかを探し　そっちの方向に旋回
                 SearchNextPoint();
@@ -123,9 +123,12 @@ public class RivalRacerAI2 : MonoBehaviour
                     force = this.gameObject.transform.forward * bulletSpeed;
                     obj.GetComponent<Rigidbody>().AddForce(force);
                 }
-                else if(hitInfo.collider.tag == "CheckPoint")
+                else if(hitInfo.collider.transform.parent != null &&
+                        hitInfo.collider.transform.parent.tag == "CheckPoint")
                 {
-                    SearchNextPoint();
+                    Debug.Log("HitRay");
+                    horizontalSpeed = 0;
+                    verticalSpeed = 0;
                 }
                 else
                 {
@@ -166,19 +169,43 @@ public class RivalRacerAI2 : MonoBehaviour
     {
         Debug.Log("Search");
         //どこに目標物があるのかを探し　そっちの方向に旋回
-        Plane hPlane = new Plane(transform.position,  transform.right); 
-        Plane vPlane = new Plane(transform.position, -transform.up);
-        Plane zPlane = new Plane(transform.position,  transform.forward);
+        Plane hPlane = new Plane(transform.position,   transform.right); 
+        Plane vPlane = new Plane(transform.position,  -transform.up);
+        Plane zPlane = new Plane(transform.position,   transform.forward);
         
 
         Vector3 nextPosition = nextObject.transform.position;
 
-        horizontalSpeed = (hPlane.GetSide(nextPosition)) ? 1 : -1;
-        verticalSpeed   = (vPlane.GetSide(nextPosition)) ? 1 : -1;
+        Vector3 v = Vector3.zero;
+        if(hPlane.GetSide(nextPosition))
+        {
+            if(vPlane.GetSide(nextPosition))
+            {
+                v = ( transform.up + transform.right).normalized;
+            }
+            else
+            {
+                v = (-transform.up + transform.right).normalized;
+            }
+        }
+        else
+        {
+            if(vPlane.GetSide(nextPosition))
+            {
+                v = ( transform.up - transform.right).normalized;
+            }
+            else
+            {
+                v = (-transform.up - transform.right).normalized;
+            }
+        }
+
+        horizontalSpeed = v.x;
+        verticalSpeed   = v.y;
         if(!zPlane.GetSide(nextPosition))
         {
-            if((-3   <= transform.rotation.eulerAngles.x && transform.rotation.eulerAngles.x <= 3) &&
-               (-3   <= transform.rotation.eulerAngles.z && transform.rotation.eulerAngles.z <= 3))
+            if((-3 <= transform.rotation.eulerAngles.x && transform.rotation.eulerAngles.x <= 3) &&
+               (-3 <= transform.rotation.eulerAngles.z && transform.rotation.eulerAngles.z <= 3))
             {
                 Debug.Log("horizontalTurn");
                 horizontalSpeed = 1;
@@ -224,9 +251,21 @@ public class RivalRacerAI2 : MonoBehaviour
             float dis = Vector3.Distance(transform.position, checkPoint.transform.position);
             if(dis < distance)
             {
-                distance = dis;
+                distance   = dis;
                 nextObject = checkPoint;
             }
+        }
+    }
+
+    void OnDrawGizmos()
+    {
+        try
+        {
+            Gizmos.DrawWireSphere(nextObject.transform.position, 2);
+        }
+        catch
+        {
+
         }
     }
 	#endregion
