@@ -8,30 +8,43 @@ public class rapidSaver : MonoBehaviour
 
 
     public Image gage;
-    public float loadedBullets;
+    private float loadedBullets;
     public float speed = 0.01f;
+
+    public int msBulletCounter;
+
 
     // Use this for initialization
     void Start()
     {
-        loadedBullets = gage.fillAmount = 0.5f;
+        loadedBullets = 0.0f;
+        gage.fillAmount = loadedBullets;
     }
 
     // Update is called once per frame
     void Update()
     {
 
-        loadedBullets = loadedBullets + speed;
+        loadedBullets = loadedBullets + 0.01f;
+        if (loadedBullets <= 0)
+        {
+            loadedBullets = 0;
+        }
         if (loadedBullets >= 1)
         {
-            loadedBullets = 0.01f;
+            loadedBullets = 1;
         }
-
         gage.fillAmount = loadedBullets;
     }
 
-    public void AddScore(float Addhp)
+    public void AddBullet(float Add)
     {
-        loadedBullets = loadedBullets + Addhp;
+        loadedBullets = loadedBullets + Add;
     }
+
+    public float GetScore()
+    {
+        return loadedBullets;
+    }
+    
 }

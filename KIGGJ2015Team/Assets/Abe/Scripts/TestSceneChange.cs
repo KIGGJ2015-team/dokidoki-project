@@ -48,9 +48,9 @@ public class TestSceneChange : MonoBehaviour
     // 更新処理
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Return))
         {
-            Application.LoadLevel("test_Player_Receive");
+            GameObject.Find("SceneManager1").GetComponent<SceneManager>().SceneChange(SceneName.GameMain);
         }
     }
 	#endregion

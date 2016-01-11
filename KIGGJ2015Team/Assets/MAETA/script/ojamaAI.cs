@@ -64,7 +64,7 @@ public class ojamaAI : MonoBehaviour {
 }
     public Vector3 GetRandomPositionOnLevel()
     {
-        float levelSize = 55f;
+        float levelSize = 1000f;
         return new Vector3(Random.Range(-levelSize, levelSize), 0, Random.Range(-levelSize, levelSize));
     }
 
@@ -80,7 +80,8 @@ public class ojamaAI : MonoBehaviour {
             //if (chara_timer.GetisStart() == true)
             //{
                 Debug.Log("en");
-            if (time_chara>0) {
+            if (time_chara>0)
+            {
                 haikai = false;
 
                 isMove = true;
@@ -90,15 +91,26 @@ public class ojamaAI : MonoBehaviour {
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * rotationSmooth);
                 Debug.Log("3");
             }
+
                 time_chara -= Time.deltaTime;
-                if (time_chara<0) {
+
+            if (time_chara<0)
+            {
                     // 前方に進む
                     transform.Translate(Vector3.forward * speed1 * Time.deltaTime);
                     Debug.Log("4");
-                }
+            }
             
         }
+        if (coll.gameObject.tag == "Obstacle")
+        {
+            Debug.Log("Obstacle");
+
+            transform.localEulerAngles = new Vector3(0, 180, 0);
         }
+
+    }
+
     void OnTriggerExit(Collider coll)
     {
         if (coll.gameObject.tag == "Player")

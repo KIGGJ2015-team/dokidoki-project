@@ -18,21 +18,11 @@ using System.Collections.Generic;
 public class PlayerImporter : MonoBehaviour
 {
 	#region 変数
+    [SerializeField, Tooltip("モデルデータ")]
+    private List<GameObject> modelData;
 
-    [SerializeField, Tooltip("プレイヤーとライバルのレーサー")]
-    private List<GameObject> importObjects;
-
-    struct Import
-    {
-        public Mesh mesh;
-        public Material[] materials;
-
-        Import(Mesh mesh_ = null, Material[] material_ = null)
-        {
-            mesh = mesh_;
-            materials = material_;
-        }
-    }
+    [SerializeField, Tooltip("プレイヤーのバレット")]
+    private GameObject bullet;
 
     #endregion
 
@@ -47,40 +37,29 @@ public class PlayerImporter : MonoBehaviour
     void Awake()
     {
         GameObject selectManager = GameObject.Find("SelectManager");
+        
+        PlayerSelect manager = GetComponent<PlayerSelect>();
+        
+        GameObject   player = Instantiate(modelData[manager.State]);
+        GameObject   spawn  = new GameObject("Spawn");
 
-        List<Import> import = new List<Import>();
+        //子に設定
+        spawn.transform.parent = player.transform;
 
-        for(int i = 0; i < 4; i++)
-        {
-            var temp = new Import();
-            temp.mesh      = selectManager.transform.GetChild(i).GetComponent<MeshFilter>().mesh;
-            temp.materials = selectManager.transform.GetChild(i).GetComponent<Renderer  >().materials;
-            import.Add(temp);
-        }
+        //プレイヤースクリプトの設定
+        player.AddComponent<Player_Move>();
+        Player_Shot shot = player.AddComponent<Player_Shot>();
+        shot.bullet = bullet;
+        shot.spawn  = spawn.transform;
 
-        PlayerSelect select = selectManager.GetComponent<PlayerSelect>();
-        importObjects[0].GetComponent<MeshFilter>().mesh      = import[select.State].mesh;
-        importObjects[0].GetComponent<Renderer  >().materials = import[select.State].materials;
+        //当たり判定の設定
+        Rigidbody rigidbody   = player.AddComponent<Rigidbody>();
+        rigidbody.isKinematic = false;
+        rigidbody.useGravity  = false;
 
-        import.RemoveAt(select.State);
+        spawn.AddComponent<Player_Reticle>();
 
-        System.Random rng = new System.Random();
-        int n = import.Count;
-        while (n > 1)
-        {
-            n--;
-            int k = rng.Next(n + 1);
-            var tmp   = import[k];
-            import[k] = import[n];
-            import[n] = tmp;
-        }
-
-        for(int i = 1; i < 4; i++)
-        {
-            importObjects[i].GetComponent<MeshFilter>().mesh      = import[0].mesh;
-            importObjects[i].GetComponent<Renderer  >().materials = import[0].materials;
-            import.RemoveAt(0);
-        }
+        spawn.transform.position = new Vector3(0, 0, 8.0f);
 
         Destroy(selectManager);
     }

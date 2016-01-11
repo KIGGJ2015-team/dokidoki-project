@@ -2,8 +2,13 @@
 using System.Collections;
 
 public class Barrier : MonoBehaviour {
-    
+    [SerializeField]
     private int life = 2;
+    [SerializeField]
+    private AudioSource SE;
+
+    public GameObject explosionPrefab;
+
     // Use this for initialization
     void Start () {
 	
@@ -23,6 +28,7 @@ public class Barrier : MonoBehaviour {
 
             if (life == 0)
             {
+               Instantiate (explosionPrefab, transform.position, transform.rotation);
                 Destroy(this.gameObject);
             }
         }

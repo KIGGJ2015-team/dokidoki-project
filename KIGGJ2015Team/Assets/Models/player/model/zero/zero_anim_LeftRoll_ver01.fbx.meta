@@ -3,7 +3,7 @@ guid: 5fdcff2f1ccf44c4f846382bf06e9d73
 timeCreated: 1451549488
 licenseType: Free
 ModelImporter:
-  serializedVersion: 18
+  serializedVersion: 19
   fileIDToRecycleName:
     100000: body2
     100002: Center
@@ -39,7 +39,7 @@ ModelImporter:
     4300002: Right_flap
     4300004: top_hane
     4300006: body2
-    7400000: Take 001
+    7400000: zero_LeftRolling
     9500000: //RootNode
     13700000: body2
     13700002: Left_flap
@@ -52,6 +52,7 @@ ModelImporter:
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
+    resampleRotations: 1
     optimizeGameObjects: 0
     motionNodeName: 
     animationImportErrors: 
@@ -59,12 +60,70 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     animationCompression: 1
-    animationRotationError: .5
-    animationPositionError: .5
-    animationScaleError: .5
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: zero_LeftRolling
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: body2
+        weight: 1
+      - path: Hip
+        weight: 1
+      - path: Hip/Center
+        weight: 1
+      - path: Hip/Center/Head
+        weight: 1
+      - path: Hip/Center/Head/Top
+        weight: 1
+      - path: Hip/Center/Left_wing
+        weight: 1
+      - path: Hip/Center/Left_wing/Left_flap_base
+        weight: 1
+      - path: Hip/Center/Left_wing/Left_flap_base/Left_flap 1
+        weight: 1
+      - path: Hip/Center/Right_wing
+        weight: 1
+      - path: Hip/Center/Right_wing/Right_flag_base
+        weight: 1
+      - path: Hip/Center/Right_wing/Right_flag_base/Right_flag
+        weight: 1
+      - path: Left_flap
+        weight: 1
+      - path: Right_flap
+        weight: 1
+      - path: top_hane
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
     isReadable: 1
   meshes:
     lODScreenPercentages: []
@@ -85,20 +144,19 @@ ModelImporter:
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    splitTangentsAcrossUV: 1
     normalImportMode: 0
-    tangentImportMode: 1
+    tangentImportMode: 4
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
     human: []
     skeleton: []
-    armTwist: .5
-    foreArmTwist: .5
-    upperLegTwist: .5
-    legTwist: .5
-    armStretch: .0500000007
-    legStretch: .0500000007
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
     hasTranslationDoF: 0

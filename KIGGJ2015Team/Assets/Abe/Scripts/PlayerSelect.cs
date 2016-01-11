@@ -30,24 +30,10 @@ public class PlayerSelect : MonoBehaviour
     private float changeSpeed;
 
     Hashtable hash;
-
-    Mesh mesh;
-    Material[] materials;
-
     #endregion
 
 
     #region プロパティ
-
-    public Mesh PlayerMesh
-    {
-        get {return mesh; }
-    }
-
-    public Material[] PlayerMaterials
-    {
-        get {return materials; }
-    }
 
     public int State
     {

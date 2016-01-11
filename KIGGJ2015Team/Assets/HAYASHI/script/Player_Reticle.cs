@@ -7,12 +7,13 @@ public class Player_Reticle : MonoBehaviour
     Ray ray;
     RaycastHit hit;
     public float limitrange;
-    GameObject reticule;
-
+    public GameObject reticule;
+    GameObject obj;
     // Use this for initialization
     void Start()
     {
-        reticule = GameObject.Find("reticle");
+        obj = Instantiate(reticule) as GameObject;
+
 
     }
 
@@ -20,14 +21,15 @@ public class Player_Reticle : MonoBehaviour
     void Update()
     {
         ray = new Ray(transform.position, transform.forward);
-        if (Physics.Raycast(ray, out hit, limitrange, LayerMask.GetMask("Bullet")))
+        if (Physics.Raycast(ray, out hit, limitrange))
         {
-            reticule.transform.position = hit.transform.position;
+            obj.transform.position = hit.transform.position;
         }
         else
         {
-            reticule.transform.position = ray.GetPoint(limitrange);
+            obj.transform.position = ray.GetPoint(limitrange);
         }
+        obj.transform.rotation = transform.rotation;
 
     }
 }
