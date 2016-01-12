@@ -37,6 +37,7 @@ public class Player_Shot : MonoBehaviour {
             Debug.Log("shot!");
             GameObject obj = GameObject.Instantiate(bullet) as GameObject;
             obj.transform.position = spawn.position;
+            obj.transform.rotation = spawn.rotation;
             Vector3 force;
             force = this.gameObject.transform.forward * playerstatus.BulletSpeed;
             obj.GetComponent<Rigidbody>().AddForce(force);
