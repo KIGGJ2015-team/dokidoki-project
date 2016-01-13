@@ -23,10 +23,10 @@ public class RivalRacerAI : MonoBehaviour
     private float speed;
 
     [SerializeField, Tooltip("弾を出す場所")]
-    GameObject spawn;
+    public GameObject spawn;
 
     [SerializeField, Tooltip("弾のオブジェクト")]
-    GameObject bullet;
+    public GameObject bullet;
 
     [SerializeField, Tooltip("弾のスピード")]
     float bulletSpeed = 1000;

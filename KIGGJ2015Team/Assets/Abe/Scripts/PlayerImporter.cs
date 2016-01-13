@@ -72,12 +72,16 @@ public class PlayerImporter : MonoBehaviour
 
         spawn.transform.position = new Vector3(0, 0, 8.0f);
 
-        coreCamera.GetComponent<Camera_Control>().fighter = player;
-        radarCamera.GetComponent<ObjectChaser>().chaseObject = player;
+        coreCamera .GetComponent<Camera_Control>().fighter   = player;
+        radarCamera.GetComponent<ObjectChaser  >().chaseObject = player;
 
         foreach(GameObject model in modelData)
         {
-
+            GameObject rival      = Instantiate(model);
+            GameObject rivalspawn = new GameObject("spawn");
+            RivalRacerAI ai = rival.AddComponent<RivalRacerAI>();
+            ai.spawn  = rivalspawn;
+            ai.bullet = bullet;
         }
 
         Destroy(selectManager);
