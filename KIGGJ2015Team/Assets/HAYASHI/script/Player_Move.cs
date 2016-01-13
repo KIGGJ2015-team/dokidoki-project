@@ -24,6 +24,7 @@ public class Player_Move : MonoBehaviour {
     GameObject fighter;
 
 
+
     float Rotate;
 
     bool rollingflg = false;
@@ -47,63 +48,67 @@ public class Player_Move : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //プレイヤーの姿勢を保持
-        vec = transform.rotation;
-        //旋回の判断
-        Rotate = Input.GetAxisRaw("Horizontal");
 
-
-
-        //Y軸反転
-        Yreverse();
-        //旋回
-        turn(Rotate);
-        //ローリング
-        if (rollingflg)
+        if (playerstatus.isControl)
         {
-            rolling();
-         }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
+
+
+
+            //プレイヤーの姿勢を保持
+            vec = transform.rotation;
+            //旋回の判断
+            Rotate = Input.GetAxisRaw("Horizontal");
+            //Y軸反転
+            Yreverse();
+            //旋回
+            turn(Rotate);
+            //ローリング
+            if (rollingflg)
             {
-                rollingflg = true;
+                rolling();
             }
-        }
-
-        //ブーストの有無
-        SpeedChange();
-        //常に前進
-        transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
-        //ボタンを離したら水平に戻る
-        keepStability();
-        //アニメ‐ジョンの再生
-        if (Input.GetButton("Fire1"))
-        {
-            animator.Play("Shot");
-        }
-        else
-        {
-            switch (keeprolling)
+            else
             {
-                case 0:
-                    animator.Play("idle");
-                    break;
-                case 1:
-                    animator.Play("Right_Rolling");
-                    break;
-                case 2:
-                    animator.Play("Left_Rolling");
-                    break;
+                if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
+                {
+                    rollingflg = true;
+                }
+            }
+
+            //ブーストの有無
+            SpeedChange();
+            //常に前進
+            transform.Translate(Vector3.forward * speed * Time.deltaTime, Space.Self);
+            //ボタンを離したら水平に戻る
+            keepStability();
+            //アニメ‐ジョンの再生
+            if (Input.GetButton("Fire1"))
+            {
+                animator.Play("Shot");
+            }
+            else
+            {
+                switch (keeprolling)
+                {
+                    case 0:
+                        animator.Play("idle");
+                        break;
+                    case 1:
+                        animator.Play("Right_Rolling");
+                        break;
+                    case 2:
+                        animator.Play("Left_Rolling");
+                        break;
 
 
+                }
             }
         }
     }
 
     void FixedUpdate()
     {
-        if (keeprolling==1)
+        if (keeprolling == 1)
         {
 
             keeprolingtime += Time.deltaTime;

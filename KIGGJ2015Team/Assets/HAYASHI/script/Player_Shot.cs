@@ -19,10 +19,13 @@ public class Player_Shot : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetButton("Fire1")) 
+        if (playerstatus.isControl)
         {
-            Shoot();
-            animator.Play("Shot");
+            if (Input.GetButton("Fire1"))
+            {
+                Shoot();
+                animator.Play("Shot");
+            }
         }
     }
 
