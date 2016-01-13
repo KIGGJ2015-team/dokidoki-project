@@ -24,6 +24,15 @@ public class PlayerImporter : MonoBehaviour
     [SerializeField, Tooltip("プレイヤーのバレット")]
     private GameObject bullet;
 
+    [SerializeField, Tooltip("プレイヤーカメラ")]
+    private GameObject coreCamera;
+
+    [SerializeField, Tooltip("レーダーカメラ")]
+    private GameObject radarCamera;
+
+    [SerializeField, Tooltip("標準オブジェクト")]
+    private GameObject reticle;
+
     #endregion
 
 
@@ -36,12 +45,12 @@ public class PlayerImporter : MonoBehaviour
 	// 初期化処理
     void Awake()
     {
-        GameObject selectManager = GameObject.Find("SelectManager");
+        GameObject   selectManager = GameObject.Find("SelectManager");
         
-        PlayerSelect manager = GetComponent<PlayerSelect>();
+        PlayerSelect manager       = selectManager.GetComponent<PlayerSelect>();
         
-        GameObject   player = Instantiate(modelData[manager.State]);
-        GameObject   spawn  = new GameObject("Spawn");
+        GameObject   player        = Instantiate(modelData[manager.State]);
+        GameObject   spawn         = new GameObject("Spawn");
 
         //子に設定
         spawn.transform.parent = player.transform;
@@ -49,17 +58,20 @@ public class PlayerImporter : MonoBehaviour
         //プレイヤースクリプトの設定
         player.AddComponent<Player_Move>();
         Player_Shot shot = player.AddComponent<Player_Shot>();
-        shot.bullet = bullet;
-        shot.spawn  = spawn.transform;
+        shot.bullet      = bullet;
+        shot.spawn       = spawn.transform;
 
         //当たり判定の設定
         Rigidbody rigidbody   = player.AddComponent<Rigidbody>();
         rigidbody.isKinematic = false;
         rigidbody.useGravity  = false;
 
-        spawn.AddComponent<Player_Reticle>();
+        spawn.AddComponent<Player_Reticle>().reticule = reticle;
 
         spawn.transform.position = new Vector3(0, 0, 8.0f);
+
+        coreCamera.GetComponent<Camera_Control>().fighter = player;
+        radarCamera.GetComponent<ObjectChaser>().chaseObject = player;
 
         Destroy(selectManager);
     }

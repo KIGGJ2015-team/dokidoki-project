@@ -60,7 +60,7 @@ public class RivalRacerAI : MonoBehaviour
 
         List<int> rand = new List<int>();
 
-        for(int i = 2; i <= objects.Length * 2; i+=2)
+        for(int i = 1; i <= objects.Length; i++)
         {
             int r = Random.Range(0, objects.Length);
             foreach(int value in rand)
@@ -72,7 +72,6 @@ public class RivalRacerAI : MonoBehaviour
             }
 
             path[i]   = objects[r].transform.position;
-            path[i-1] = path[i] + new Vector3(Random.Range(-50, 50), Random.Range(-50, 50), Random.Range(-50, 50));
             rand.Add(r);
 
             continue;
@@ -84,7 +83,6 @@ public class RivalRacerAI : MonoBehaviour
         }
 
         path[0] = transform.position;
-        path[path.Length-2] = new Vector3(Random.Range(-200, 200), Random.Range(-200, 200), Random.Range(-200, 200));
         path[path.Length-1] = goal.transform.position;
 
         Debug.Log(path);
