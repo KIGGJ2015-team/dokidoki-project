@@ -33,6 +33,9 @@ public class RivalRacerAI : MonoBehaviour
 
     Hashtable  hash;
 
+    [SerializeField]
+    bool isControl = false;
+
     #endregion
 
 
@@ -54,15 +57,43 @@ public class RivalRacerAI : MonoBehaviour
     // 更新前処理
     void Start()
     {
+        if(isControl)
+        {
+            Search();
+        }
+    }
+
+    IEnumerator ForwardMove()
+    {
+        yield return null;
+    }
+
+    void Search()
+    {
         GameObject[] objects = GameObject.FindGameObjectsWithTag("CheckPoint");
         GameObject   goal    = GameObject.Find("Goal");
-        Vector3[]    path    = new Vector3[(objects.Length) * 2 + 3];
+        Vector3[]    path    = new Vector3[(objects.Length) + 2];
+
+        CheckPointManager manager = GetComponent<CheckPointManager>();
+
+        List<GameObject> checkObjects = new List<GameObject>(objects);
+
+        foreach(GameObject checkpoint in manager.KeyItemsData)
+        {
+            foreach(GameObject search in objects)
+            {
+                if(checkpoint == search)
+                {
+                    checkObjects.Remove(search);
+                }
+            }
+        }
 
         List<int> rand = new List<int>();
 
-        for(int i = 1; i <= objects.Length; i++)
+        for(int i = 1; i <= checkObjects.Count; i++)
         {
-            int r = Random.Range(0, objects.Length);
+            int r = Random.Range(0, checkObjects.Count);
             foreach(int value in rand)
             {
                 if(value == r)
@@ -71,7 +102,7 @@ public class RivalRacerAI : MonoBehaviour
                 }
             }
 
-            path[i]   = objects[r].transform.position;
+            path[i]   = checkObjects[r].transform.position;
             rand.Add(r);
 
             continue;
@@ -86,48 +117,62 @@ public class RivalRacerAI : MonoBehaviour
         path[path.Length-1] = goal.transform.position;
 
         Debug.Log(path);
+        hash.Clear();
         hash.Add("path", path);
         hash.Add("speed", speed);
         hash.Add("easetype", iTween.EaseType.linear);
+        hash.Add("onupdatetarget", gameObject);
+        hash.Add("onupdate", "UpdatePosition");
 
         iTween.MoveTo(gameObject, hash);
     }
 
     void UpdatePosition()
     {
+        Debug.Log("UpdatePosition");
 
+        if(!isControl)
+        {
+            StartCoroutine(NoControl());
+            iTween.Stop(gameObject);
+        }
     }
 
-    IEnumerator Turning()
+    IEnumerator NoControl()
     {
-        //どちらかに旋回し　障害物を迂回
-
-        float time = Random.Range(2.0f, 5.0f);
-
         while(true)
         {
-            Debug.Log("turn");
-            time -= Time.deltaTime;
-            if(time <= 0)
+            for(float i = 0; i >= 2.0f; i += Time.deltaTime)
             {
-                yield break;
+                transform.position += Vector3.forward * speed * Time.deltaTime;
+                yield return null;
             }
 
-            UpdatePosition();
-            yield return null;
+            if(GetComponent<CheckPointManager>().IsGetAllKey)
+            {
+                continue;
+            }
+
+            isControl = true;
+            Search();
+            yield break;
         }
     }
 
     void RandomRoot()
     {
-
+        
     }
 
     void OnTriggerEnter(Collider other)
     {
         if(other.tag == "goal")
         {
-
+            isControl = false;
+        }
+        else if(other.tag == "Bullet")
+        {
+            isControl = false;
         }
     }
     #endregion

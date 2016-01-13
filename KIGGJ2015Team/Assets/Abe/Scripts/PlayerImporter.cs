@@ -52,6 +52,8 @@ public class PlayerImporter : MonoBehaviour
         GameObject   player        = Instantiate(modelData[manager.State]);
         GameObject   spawn         = new GameObject("Spawn");
 
+        modelData.RemoveAt(manager.State);
+
         //子に設定
         spawn.transform.parent = player.transform;
 
@@ -72,6 +74,11 @@ public class PlayerImporter : MonoBehaviour
 
         coreCamera.GetComponent<Camera_Control>().fighter = player;
         radarCamera.GetComponent<ObjectChaser>().chaseObject = player;
+
+        foreach(GameObject model in modelData)
+        {
+
+        }
 
         Destroy(selectManager);
     }
