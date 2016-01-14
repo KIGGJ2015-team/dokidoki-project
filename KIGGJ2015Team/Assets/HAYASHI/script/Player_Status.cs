@@ -105,23 +105,59 @@ public class Player_Status : MonoBehaviour {
         switch (playertype)
         {
             case PlayerType.zero:
-                speed = 20;
-                rotatespeed = 1;
-                boostspeed = 40;
-                boostlimit = 1;
+                speed = 40;
+                rotatespeed = 1.2f;
+                boostspeed = 100;
+                boostlimit = 4;
                 boostcooling = 0.1f;
                 RollingSpeed = 15;
                 RollingLimitTime = 0.5f;
                 bulletspeed = 1000;
                 bulletinterbal = 0.5f;
-                damage = 0;     //未定
-                hp = 0;         //未定
+                damage = 30;     //未定
+                hp = 300;         //未定
                 break;
             case PlayerType.dragon:
+                speed = 40;
+                rotatespeed = 1.2f;
+                boostspeed = 90;
+                boostlimit = 3;
+                boostcooling = 0.1f;
+                RollingSpeed = 15;
+                RollingLimitTime = 0.5f;
+                bulletspeed = 1000;
+                bulletinterbal = 0.5f;
+                damage = 100;     //未定
+                hp = 300;         //未定
+
                 break;
             case PlayerType.human:
+                speed = 50;
+                rotatespeed = 1.5f;
+                boostspeed = 110;
+                boostlimit = 6;
+                boostcooling = 0.1f;
+                RollingSpeed = 15;
+                RollingLimitTime = 0.5f;
+                bulletspeed = 1000;
+                bulletinterbal = 0.5f;
+                damage = 10;     //未定
+                hp = 90;         //未定
+
                 break;
             case PlayerType.SF:
+                speed = 40;
+                rotatespeed = 1;
+                boostspeed = 120;
+                boostlimit = 3;
+                boostcooling = 0.1f;
+                RollingSpeed = 15;
+                RollingLimitTime = 0.5f;
+                bulletspeed = 1000;
+                bulletinterbal = 0.5f;
+                damage = 50;     //未定
+                hp = 300;         //未定
+
                 break;
             case PlayerType.DEBUG:
                 speed = 0;
