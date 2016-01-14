@@ -27,19 +27,27 @@ public class Goal : MonoBehaviour
     [SerializeField, Tooltip("情報を表示するテキスト")]
     private GameObject informationText;
 
+    private List<GameObject> goalCheck = new List<GameObject>();
+
     #endregion
 
 
     #region プロパティ
 
-
+    public List<GameObject> GoalCheck
+    {
+        get
+        {
+            return goalCheck;
+        }
+    }
 
     #endregion
 
 
     #region メソッド
 
-	// 初期化処理
+    // 初期化処理
     void Awake()
     {
 
@@ -65,6 +73,7 @@ public class Goal : MonoBehaviour
             {
                 //ゴール
                 PlayerGoal();
+                goalCheck.Add(other.gameObject);
             }
         }
     }
