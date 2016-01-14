@@ -33,6 +33,15 @@ public class PlayerImporter : MonoBehaviour
     [SerializeField, Tooltip("標準オブジェクト")]
     private GameObject reticle;
 
+    [SerializeField, Tooltip("チェックポイントの数")]
+    private int checkPointNumber;
+
+    [SerializeField, Tooltip("開始位置")]
+    private Vector3 startingPosition;
+
+    [SerializeField, Tooltip("ゲームマネージャー")]
+    private GameObject gameManager;
+
     #endregion
 
 
@@ -45,12 +54,18 @@ public class PlayerImporter : MonoBehaviour
 	// 初期化処理
     void Awake()
     {
+        PlayerInfomation info = gameManager.AddComponent<PlayerInfomation>();
+
         GameObject   selectManager = GameObject.Find("SelectManager");
         
         PlayerSelect manager       = selectManager.GetComponent<PlayerSelect>();
         
-        GameObject   player        = Instantiate(modelData[manager.State]);
+        GameObject   player        = Instantiate(modelData[manager.State], startingPosition, Quaternion.identity) as GameObject;
         GameObject   spawn         = new GameObject("Spawn");
+
+        info.Player = player;
+
+        modelData.RemoveAt(manager.State);
 
         //子に設定
         spawn.transform.parent = player.transform;
@@ -61,6 +76,9 @@ public class PlayerImporter : MonoBehaviour
         shot.bullet      = bullet;
         shot.spawn       = spawn.transform;
 
+
+        player.AddComponent<CheckPointManager>().checkPointNumber = checkPointNumber;
+
         //当たり判定の設定
         Rigidbody rigidbody   = player.AddComponent<Rigidbody>();
         rigidbody.isKinematic = false;
@@ -70,8 +88,29 @@ public class PlayerImporter : MonoBehaviour
 
         spawn.transform.position = new Vector3(0, 0, 8.0f);
 
-        coreCamera.GetComponent<Camera_Control>().fighter = player;
-        radarCamera.GetComponent<ObjectChaser>().chaseObject = player;
+        coreCamera .GetComponent<Camera_Control>().fighter     = player;
+        radarCamera.GetComponent<ObjectChaser  >().chaseObject = player;
+
+        int i = 1;
+        foreach(GameObject model in modelData)
+        {
+            GameObject rival      = Instantiate(model, startingPosition + new Vector3(20, 0, 0) * i, Quaternion.identity) as GameObject;
+            info.RivalAdd(rival);
+
+            GameObject rivalspawn = new GameObject("spawn");
+            RivalRacerAI ai = rival.AddComponent<RivalRacerAI>();
+            ai.spawn  = rivalspawn;
+            ai.bullet = bullet;
+            ai.speed  = 10;
+
+            rival.AddComponent<CheckPointManager>().checkPointNumber = checkPointNumber;
+
+            Rigidbody rivalRigidbody = rival.AddComponent<Rigidbody>();
+            rivalRigidbody.isKinematic = false;
+            rivalRigidbody.useGravity  = false;
+
+            i++;
+        }
 
         Destroy(selectManager);
     }
@@ -81,5 +120,10 @@ public class PlayerImporter : MonoBehaviour
 
     // 更新処理
     void Update() { }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(startingPosition, 1.0f);
+    }
 	#endregion
 }

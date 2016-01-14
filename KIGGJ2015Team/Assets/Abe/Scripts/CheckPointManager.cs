@@ -26,7 +26,7 @@ public class CheckPointManager : MonoBehaviour
     private List<GameObject> keyItemsData;
 
     [SerializeField, Tooltip("チェックポイントの個数"), Range(1, 100)]
-    private int checkPointNumber = 1;
+    public int checkPointNumber = 1;
 
     [SerializeField, Tooltip("情報を表示するテキスト")]
     private GameObject informationText;
