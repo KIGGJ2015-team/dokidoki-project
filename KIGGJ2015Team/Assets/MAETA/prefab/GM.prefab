@@ -75,14 +75,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0767b7df077f7a44a64148221eea11c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  urochoro: 1
-  player: {fileID: 0}
-  Check0: {fileID: 0}
-  Check1: {fileID: 0}
-  Check2: {fileID: 0}
-  Playerrange: 10
-  Checkrange: 10
+  C3: {fileID: 0}
+  C2: {fileID: 0}
+  C1: {fileID: 0}
+  C_GO: {fileID: 0}
+  time: 3
+  frag: 0
 --- !u!114 &11439526
 MonoBehaviour:
   m_ObjectHideFlags: 1

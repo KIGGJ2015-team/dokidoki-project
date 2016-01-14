@@ -209,9 +209,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -259,6 +257,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d02eb350db32fd44a872ade3dc25fee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  life: 2
+  SE: {fileID: 0}
+  explosionPrefab: {fileID: 153704, guid: ba4df94abfc3c8c4f95624f56b7cc3d2, type: 2}
 --- !u!54 &74558630
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -311,9 +312,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -463,9 +462,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}

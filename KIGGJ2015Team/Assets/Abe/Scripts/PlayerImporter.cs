@@ -76,6 +76,7 @@ public class PlayerImporter : MonoBehaviour
         shot.bullet      = bullet;
         shot.spawn       = spawn.transform;
 
+
         player.AddComponent<CheckPointManager>().checkPointNumber = checkPointNumber;
 
         //当たり判定の設定
