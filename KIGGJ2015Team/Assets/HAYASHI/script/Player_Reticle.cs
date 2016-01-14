@@ -6,7 +6,7 @@ public class Player_Reticle : MonoBehaviour
 
     Ray ray;
     RaycastHit hit;
-    public float limitrange;
+    public float limitrange = 50;
     public GameObject reticule;
     GameObject obj;
     // Use this for initialization

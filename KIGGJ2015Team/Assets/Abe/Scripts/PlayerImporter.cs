@@ -86,7 +86,7 @@ public class PlayerImporter : MonoBehaviour
 
         spawn.AddComponent<Player_Reticle>().reticule = reticle;
 
-        spawn.transform.position = new Vector3(0, 0, 8.0f);
+        spawn.transform.localPosition = new Vector3(0, 0, 8.0f);
 
         coreCamera .GetComponent<Camera_Control>().fighter     = player;
         radarCamera.GetComponent<ObjectChaser  >().chaseObject = player;
@@ -101,7 +101,7 @@ public class PlayerImporter : MonoBehaviour
             RivalRacerAI ai = rival.AddComponent<RivalRacerAI>();
             ai.spawn  = rivalspawn;
             ai.bullet = bullet;
-            ai.speed  = 10;
+            ai.speed  = 40;
 
             rival.AddComponent<CheckPointManager>().checkPointNumber = checkPointNumber;
 

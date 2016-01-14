@@ -1073,6 +1073,10 @@ Prefab:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 579976024}
+    - target: {fileID: 11451018, guid: 52825bef39ba6b8428e60b828f85a88c, type: 2}
+      propertyPath: checkPointNumber
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 52825bef39ba6b8428e60b828f85a88c, type: 2}
   m_IsPrefabParent: 0
@@ -1253,6 +1257,10 @@ Prefab:
       propertyPath: m_NormalizedViewPortRect.height
       value: .25
       objectReference: {fileID: 0}
+    - target: {fileID: 2011918, guid: 31073d7ade7e3744ba840ffb042c55ae, type: 2}
+      propertyPath: m_CullingMask.m_Bits
+      value: 256
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 31073d7ade7e3744ba840ffb042c55ae, type: 2}
   m_IsPrefabParent: 0
@@ -1309,7 +1317,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 2022130, guid: 0316981dd3182db438973b9339f60574, type: 2}
       propertyPath: m_CullingMask.m_Bits
-      value: 4294966271
+      value: 4294967039
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0316981dd3182db438973b9339f60574, type: 2}
