@@ -3,6 +3,10 @@ using System.Collections;
 
 public class title : MonoBehaviour {
 
+    
+
+    
+
 	// Use this for initialization
 	void Start () {
 	
@@ -16,8 +20,7 @@ public class title : MonoBehaviour {
     public void stage_select()
     {
         //機体選択へ
-        Application.LoadLevel("");
-
+        GameObject.Find("SceneManager1").GetComponent<SceneManager>().SceneChange(SceneName.SelectScene);
     }
     public void Exit()
     {
