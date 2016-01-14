@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using System.Collections;
-using System.Collections.Generic;
 
 public class timer : MonoBehaviour {
 
@@ -22,8 +21,6 @@ public class timer : MonoBehaviour {
     [SerializeField]
     bool isStart = false;
 
-    Player_Status status;
-
 	// Use this for initialization
 	void Start () {
         count3 = C3.transform.position;
@@ -38,7 +35,6 @@ public class timer : MonoBehaviour {
         count_GO = C_GO.transform.position;
         C_GO.transform.position = new Vector3(-10000, -10000, 0);
 
-        status = GameObject.Find("System").GetComponent<Player_Status>();
     }
 	
 	// Update is called once per frame
@@ -74,12 +70,6 @@ public class timer : MonoBehaviour {
         {
             C_GO.transform.position = new Vector3(-10000, -10000, 0);
             isStart = true;
-            status.isControl = true;
-            List<GameObject> rival = GetComponent<PlayerInfomation>().rival;
-            foreach(GameObject r in rival)
-            {
-                r.GetComponent<RivalRacerAI>().isControl = true;
-            }
         }
 
 

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class result : MonoBehaviour {
+public class Result : MonoBehaviour {
 
     [SerializeField]
     private GameObject one;
@@ -18,13 +18,13 @@ public class result : MonoBehaviour {
     [SerializeField]
     public bool goal = false;
     [SerializeField]
-    bool iti = false;
+    public bool iti = false;
     [SerializeField]
-    bool ni = false;
+    public bool ni = false;
     [SerializeField]
-    bool san = false;
+    public bool san = false;
     [SerializeField]
-    bool yon = false;
+    public bool yon = false;
 
     
     // Use this for initialization

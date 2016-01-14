@@ -24,6 +24,8 @@ public class ojamaAI : MonoBehaviour {
     public GameObject bullet;
     public Transform spawn;
     public float speed1;
+
+    Result re;
     
 
     private void Start()
@@ -37,7 +39,7 @@ public class ojamaAI : MonoBehaviour {
     {
         
         timer = GameObject.Find("GM").GetComponent<timer>();
-
+        re = player.GetComponent<Result>();
         if (timer.GetisStart() == true)
         {
 
@@ -79,7 +81,13 @@ public class ojamaAI : MonoBehaviour {
         {
             //if (chara_timer.GetisStart() == true)
             //{
-                Debug.Log("en");
+
+           
+            Application.LoadLevel("result");
+            re.goal = true;
+            re.iti = true;
+
+            Debug.Log("en");
             if (time_chara>0)
             {
                 haikai = false;
