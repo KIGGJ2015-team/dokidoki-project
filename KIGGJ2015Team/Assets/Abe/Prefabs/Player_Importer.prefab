@@ -40,11 +40,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   modelData:
-  - {fileID: 143386, guid: 338ca9b05e8735a4e8706ecb56376214, type: 2}
-  - {fileID: 178794, guid: 75d5bc04407d5e74ca0fecaecb83e2ee, type: 2}
-  - {fileID: 119024, guid: 45dbefcb9b296ac4e8f6819362c96ee6, type: 2}
-  - {fileID: 189388, guid: 3a75fd1c4938e3341b44e199ff4108eb, type: 2}
-  bullet: {fileID: 127496, guid: e90c9f606904aa1448beaeb3aed083b0, type: 2}
+  - {fileID: 151656, guid: 254a46c789e406345b8542c374f3a672, type: 2}
+  - {fileID: 142460, guid: 003c3712e7c57ff4cb9225b545d9a306, type: 2}
+  - {fileID: 160292, guid: f24ab6e8f60c86f4d97b0b04dbcc7b31, type: 2}
+  - {fileID: 129852, guid: 258d99a5110ea8e4c94d521d9479b8ea, type: 2}
+  bullet: {fileID: 110134, guid: e90c9f606904aa1448beaeb3aed083b0, type: 2}
+  coreCamera: {fileID: 0}
+  radarCamera: {fileID: 0}
+  reticle: {fileID: 110684, guid: 00cb1b7b77d24f244bc27cbcd953a794, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

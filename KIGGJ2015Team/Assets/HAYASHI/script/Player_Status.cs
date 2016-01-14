@@ -97,7 +97,8 @@ public class Player_Status : MonoBehaviour {
         get { return hp; }
     }
 
-
+    public bool isControl = false;
+    
 
     // Use this for initialization
     void Start () {
