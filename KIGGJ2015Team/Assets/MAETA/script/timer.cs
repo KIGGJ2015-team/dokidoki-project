@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class timer : MonoBehaviour {
 
@@ -74,6 +75,11 @@ public class timer : MonoBehaviour {
             C_GO.transform.position = new Vector3(-10000, -10000, 0);
             isStart = true;
             status.isControl = true;
+            List<GameObject> rival = GetComponent<PlayerInfomation>().rival;
+            foreach(GameObject r in rival)
+            {
+                r.GetComponent<RivalRacerAI>().isControl = true;
+            }
         }
 
 

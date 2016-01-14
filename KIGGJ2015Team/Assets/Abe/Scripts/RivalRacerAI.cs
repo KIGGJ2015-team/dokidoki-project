@@ -20,7 +20,7 @@ public class RivalRacerAI : MonoBehaviour
     #region 変数
 
     [SerializeField, Tooltip("前進スピード")]
-    private float speed;
+    public float speed;
 
     [SerializeField, Tooltip("弾を出す場所")]
     public GameObject spawn;
@@ -29,12 +29,12 @@ public class RivalRacerAI : MonoBehaviour
     public GameObject bullet;
 
     [SerializeField, Tooltip("弾のスピード")]
-    float bulletSpeed = 1000;
+    public float bulletSpeed = 1000;
 
     Hashtable  hash;
 
     [SerializeField]
-    bool isControl = false;
+    public bool isControl = false;
 
     #endregion
 
@@ -61,6 +61,24 @@ public class RivalRacerAI : MonoBehaviour
         {
             Search();
         }
+        else
+        {
+            StartCoroutine(StartWait());
+        }
+    }
+
+    IEnumerator StartWait()
+    {
+        while(true)
+        {
+            if(isControl)
+            {
+                Search();
+                yield break;
+            }
+
+            yield return null;
+        }
     }
 
     IEnumerator ForwardMove()
@@ -78,13 +96,17 @@ public class RivalRacerAI : MonoBehaviour
 
         List<GameObject> checkObjects = new List<GameObject>(objects);
 
-        foreach(GameObject checkpoint in manager.KeyItemsData)
+
+        if(manager.KeyItemsData != null)
         {
-            foreach(GameObject search in objects)
+            foreach(GameObject checkpoint in manager.KeyItemsData)
             {
-                if(checkpoint == search)
+                foreach(GameObject search in objects)
                 {
-                    checkObjects.Remove(search);
+                    if(checkpoint == search)
+                    {
+                        checkObjects.Remove(search);
+                    }
                 }
             }
         }

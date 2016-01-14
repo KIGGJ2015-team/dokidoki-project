@@ -39,6 +39,9 @@ public class PlayerImporter : MonoBehaviour
     [SerializeField, Tooltip("開始位置")]
     private Vector3 startingPosition;
 
+    [SerializeField, Tooltip("ゲームマネージャー")]
+    private GameObject gameManager;
+
     #endregion
 
 
@@ -51,12 +54,16 @@ public class PlayerImporter : MonoBehaviour
 	// 初期化処理
     void Awake()
     {
+        PlayerInfomation info = gameManager.AddComponent<PlayerInfomation>();
+
         GameObject   selectManager = GameObject.Find("SelectManager");
         
         PlayerSelect manager       = selectManager.GetComponent<PlayerSelect>();
         
         GameObject   player        = Instantiate(modelData[manager.State], startingPosition, Quaternion.identity) as GameObject;
         GameObject   spawn         = new GameObject("Spawn");
+
+        info.Player = player;
 
         modelData.RemoveAt(manager.State);
 
@@ -87,10 +94,13 @@ public class PlayerImporter : MonoBehaviour
         foreach(GameObject model in modelData)
         {
             GameObject rival      = Instantiate(model, startingPosition + new Vector3(20, 0, 0) * i, Quaternion.identity) as GameObject;
+            info.RivalAdd(rival);
+
             GameObject rivalspawn = new GameObject("spawn");
             RivalRacerAI ai = rival.AddComponent<RivalRacerAI>();
             ai.spawn  = rivalspawn;
             ai.bullet = bullet;
+            ai.speed  = 20;
 
             rival.AddComponent<CheckPointManager>().checkPointNumber = checkPointNumber;
 
