@@ -100,7 +100,7 @@ public class PlayerImporter : MonoBehaviour
             RivalRacerAI ai = rival.AddComponent<RivalRacerAI>();
             ai.spawn  = rivalspawn;
             ai.bullet = bullet;
-            ai.speed  = 20;
+            ai.speed  = 10;
 
             rival.AddComponent<CheckPointManager>().checkPointNumber = checkPointNumber;
 
