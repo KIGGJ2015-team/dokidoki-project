@@ -1385,9 +1385,38 @@ Prefab:
       propertyPath: m_LocalScale.x
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11463730, guid: 03f68b257abfb544595e85e409d4afd8, type: 2}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22486672, guid: 03f68b257abfb544595e85e409d4afd8, type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -199
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 03f68b257abfb544595e85e409d4afd8, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &712952592 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 152846, guid: 03f68b257abfb544595e85e409d4afd8, type: 2}
+  m_PrefabInternal: {fileID: 712952591}
+--- !u!114 &712952593
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 712952592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5348936220a1bee47a68680e151a4e59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: 13f6ba60ac2b25e4481427a0c983758c, type: 3}
+  - {fileID: 21300000, guid: 955208909300b9c4a8b1465096fd454d, type: 3}
+  - {fileID: 21300000, guid: 72f30752eafd25a45b86e533d191bab9, type: 3}
+  - {fileID: 21300000, guid: f88fb9729dc521a40a6e475ed8a91ca8, type: 3}
+  selectManager: {fileID: 122741744}
 --- !u!1 &729445908
 GameObject:
   m_ObjectHideFlags: 0
